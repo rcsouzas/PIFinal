@@ -19,13 +19,18 @@
       <article class="metric-card">
         <span class="metric-icon teal" aria-hidden="true">⌖</span>
         <span class="metric-label">SUA VIAGEM</span>
-        <strong class="metric-status"><span class="live-dot"></span> Em andamento</strong>
-        <span class="metric-foot">Saída da rota · 07:00</span>
+        <strong class="metric-status"
+          ><span class="live-dot"></span
+          >{{ absenceReported ? 'Ausência avisada' : 'Em andamento' }}</strong
+        >
+        <span class="metric-foot">{{
+          absenceReported ? 'Parada removida nesta demonstração' : 'Saída da rota · 07:00'
+        }}</span>
       </article>
       <article class="metric-card">
         <span class="metric-icon blue" aria-hidden="true">◷</span>
-        <span class="metric-label">CHEGADA À ESCOLA</span>
-        <strong>07:50 <small>h</small></strong>
+        <span class="metric-label">CHEGADA AO SEU PONTO</span>
+        <strong>2 <small>min</small></strong>
         <span class="metric-foot">Previsão demonstrativa</span>
       </article>
       <article class="metric-card">
@@ -69,6 +74,70 @@
         >
       </article>
     </div>
+
+    <div class="student-actions-grid">
+      <article class="dashboard-card student-action-card">
+        <span class="card-eyebrow">AVISE O MOTORISTA</span>
+        <h2>{{ absenceReported ? 'Ausência registrada' : 'Não vai usar o transporte?' }}</h2>
+        <p>
+          {{
+            absenceReported
+              ? 'O aviso está registrado apenas nesta demonstração; a rota real não foi alterada.'
+              : 'Avise com antecedência para que sua parada possa ser removida da rota do dia.'
+          }}
+        </p>
+        <button
+          class="student-action-button"
+          type="button"
+          [class.secondary-action]="absenceReported"
+          (click)="toggleAbsenceReport()"
+        >
+          {{ absenceReported ? 'Desfazer aviso' : 'Avisar ausência' }}
+        </button>
+      </article>
+
+      <article class="dashboard-card student-action-card proximity-card">
+        <span class="card-eyebrow">ALERTA DE PROXIMIDADE</span>
+        <h2>Transporte a 2 minutos</h2>
+        <p>
+          {{
+            proximityAlertEnabled
+              ? 'Alerta ativado nesta tela de demonstração. Notificações reais ainda não estão conectadas.'
+              : 'Ative o lembrete demonstrativo para se preparar quando o transporte estiver perto.'
+          }}
+        </p>
+        <button
+          class="student-action-button"
+          type="button"
+          [class.secondary-action]="proximityAlertEnabled"
+          [attr.aria-pressed]="proximityAlertEnabled"
+          (click)="toggleProximityAlert()"
+        >
+          {{ proximityAlertEnabled ? 'Desativar lembrete' : 'Ativar lembrete' }}
+        </button>
+      </article>
+    </div>
+
+    <article class="dashboard-card student-qr-card">
+      <div>
+        <span class="card-eyebrow">EMBARQUE COM QR CODE</span>
+        <h2>Seu código de embarque</h2>
+        <p>Apresente este código ao motorista para validar o embarque.</p>
+        <small>QR Code ilustrativo · não valida uma viagem real</small>
+      </div>
+      <img
+        *ngIf="checkInQrDataUrl; else qrStatus"
+        [src]="checkInQrDataUrl"
+        alt="QR Code demonstrativo de embarque"
+        width="132"
+        height="132"
+      />
+      <ng-template #qrStatus>
+        <p class="qr-status" role="status" aria-live="polite">
+          {{ qrError || 'Gerando seu código demonstrativo…' }}
+        </p>
+      </ng-template>
+    </article>
 
     <article class="dashboard-card seat-card">
       <div class="card-heading">
@@ -128,13 +197,18 @@
   <ng-container *ngIf="activeTab === 'avisos'">
     <article class="dashboard-card student-notice">
       <span class="notice-sticker" aria-hidden="true">✦</span
-      ><span class="card-eyebrow">AVISO DA VIAGEM</span>
-      <h2>Você está a caminho!</h2>
+      ><span class="card-eyebrow">AVISOS DA VIAGEM</span>
+      <h2>{{ absenceReported ? 'Ausência avisada' : 'Você está a caminho!' }}</h2>
       <p>
-        O transporte iniciou a rota da manhã. Lembre-se de seguir as orientações da sua família e do
-        motorista.
+        {{
+          absenceReported
+            ? 'Seu aviso foi registrado somente nesta sessão de demonstração.'
+            : 'O transporte iniciou a rota da manhã. Lembre-se de seguir as orientações da sua família e do motorista.'
+        }}
       </p>
-      <span class="notice-time">Hoje · 07:10 · Aviso demonstrativo</span>
+      <span class="notice-time">{{
+        absenceReported ? 'Agora · Aviso demonstrativo' : 'Hoje · 07:10 · Aviso demonstrativo'
+      }}</span>
     </article>
   </ng-container>
 </app-dashboard-layout>

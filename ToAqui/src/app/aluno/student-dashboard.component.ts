@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as QRCode from 'qrcode';
 import { DashboardTab } from '../auth/profile';
 
 @Component({
@@ -7,9 +8,20 @@ import { DashboardTab } from '../auth/profile';
   styleUrl: './student-dashboard.component.scss',
   standalone: false,
 })
-export class StudentDashboardComponent {
+export class StudentDashboardComponent implements OnInit {
   activeTab: DashboardTab = 'inicio';
-  readonly studentOnboard = true;
+  absenceReported = false;
+  proximityAlertEnabled = false;
+  checkInQrDataUrl = '';
+  qrError = '';
+
+  get studentOnboard(): boolean {
+    return !this.absenceReported;
+  }
+
+  ngOnInit(): void {
+    void this.generateCheckInQr();
+  }
 
   get title(): string {
     if (this.activeTab === 'rota') return 'Detalhes da sua viagem';
@@ -21,5 +33,25 @@ export class StudentDashboardComponent {
     return this.activeTab === 'inicio'
       ? 'Confira como será o caminho até a escola hoje.'
       : 'Informações demonstrativas do seu transporte escolar.';
+  }
+
+  toggleAbsenceReport(): void {
+    this.absenceReported = !this.absenceReported;
+  }
+
+  toggleProximityAlert(): void {
+    this.proximityAlertEnabled = !this.proximityAlertEnabled;
+  }
+
+  private async generateCheckInQr(): Promise<void> {
+    try {
+      this.checkInQrDataUrl = await QRCode.toDataURL('toaqui://demo/rota-01/aluno-04', {
+        errorCorrectionLevel: 'M',
+        margin: 2,
+        width: 176,
+      });
+    } catch {
+      this.qrError = 'Não foi possível gerar o QR Code demonstrativo. Tente recarregar a página.';
+    }
   }
 }

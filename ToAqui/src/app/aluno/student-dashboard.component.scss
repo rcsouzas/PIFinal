@@ -232,3 +232,102 @@
   color: #8a9bae;
   font-size: 9px;
 }
+
+.student-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 15px;
+}
+
+.student-action-card {
+  display: flex;
+  min-height: 205px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.student-action-card h2,
+.student-qr-card h2 {
+  margin: 13px 0 7px;
+  color: #244664;
+  font-size: 15px;
+}
+
+.student-action-card p,
+.student-qr-card p {
+  margin: 0;
+  color: #74889c;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.student-action-button {
+  min-height: 40px;
+  margin-top: auto;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--profile-accent);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.student-action-button:hover {
+  filter: brightness(0.94);
+}
+
+.student-action-button:focus-visible {
+  outline: 3px solid rgba(102, 139, 184, 0.35);
+  outline-offset: 2px;
+}
+
+.student-action-button.secondary-action {
+  border: 1px solid rgba(37, 67, 89, 0.16);
+  background: transparent;
+  color: #415b75;
+}
+
+.student-qr-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.student-qr-card small {
+  display: block;
+  margin-top: 10px;
+  color: #8a9bae;
+  font-size: 9px;
+}
+
+.student-qr-card img {
+  flex: 0 0 132px;
+  border: 1px solid rgba(37, 67, 89, 0.12);
+  border-radius: 8px;
+}
+
+.student-qr-card .qr-status {
+  max-width: 180px;
+}
+
+@media (max-width: 640px) {
+  .student-actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-qr-card {
+    align-items: flex-start;
+  }
+
+  .student-qr-card img {
+    width: 104px;
+    height: 104px;
+    flex-basis: 104px;
+  }
+}
