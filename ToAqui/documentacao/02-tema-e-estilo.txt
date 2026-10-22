@@ -1,0 +1,52 @@
+Tema e estilo do ToAqui
+========================
+
+Este projeto usa variáveis CSS globais para centralizar as cores e facilitar manutenção. O arquivo principal é src/theme.scss.
+
+Estrutura visual do tema
+------------------------
+- cores base para tema claro
+- cores base para tema escuro
+- bordas, textos e destaques
+- regras de foco para acessibilidade
+
+Exemplo do tema claro
+----------------------
+  :root {
+    --app-background: #edf3f7;
+    --app-text: #1a2d3a;
+    --app-accent: #1d8d8a;
+    --app-border: rgba(23, 41, 56, 0.14);
+  }
+
+Exemplo do tema escuro
+----------------------
+  html[data-theme='dark'] {
+    --app-background: #0a1217;
+    --app-text: #dfe9ef;
+    --app-border: rgba(116, 146, 164, 0.2);
+    --app-accent: #84e2cb;
+  }
+
+Por que usar variáveis?
+-----------------------
+Porque cada componente visual pode consumir esses tokens sem repetir código. Se a cor principal mudar, o designer altera apenas um ponto central.
+
+Como o dark mode é ativado
+---------------------------
+A aplicação usa os dados do documento HTML:
+
+  document.documentElement.dataset['theme'] = this.isDark() ? 'dark' : 'light';
+
+Com isso, o CSS responde em blocos como:
+
+  html[data-theme='dark'] .dashboard-shell {
+    background: linear-gradient(...);
+  }
+
+Dicas importantes
+-----------------
+- evite branco puro em superfícies escuras
+- prefira grafite, azul escuro e verde-muted
+- mantenha as bordas escuras para separar áreas sem cansaço visual
+- use contraste moderado para reduzir esforço dos olhos em ambientes com pouca luz

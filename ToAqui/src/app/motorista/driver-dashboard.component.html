@@ -1,0 +1,157 @@
+<app-dashboard-layout
+  [profile]="'motorista'"
+  [activeTab]="activeTab"
+  [title]="title"
+  [subtitle]="subtitle"
+  (tabChange)="activeTab = $event"
+>
+  <ng-container *ngIf="activeTab === 'inicio'">
+    <section class="driver-welcome">
+      <span class="driver-steering" aria-hidden="true">⌖</span>
+      <div>
+        <span>PAINEL DO MOTORISTA</span><strong>Rota da manhã pronta para começar.</strong>
+        <p>Veja as paradas e mantenha os registros de embarque em dia.</p>
+      </div>
+      <span class="driver-route-tag">VAN · ROTA 01</span>
+    </section>
+
+    <div class="metric-grid">
+      <article class="metric-card">
+        <span class="metric-icon teal" aria-hidden="true">⌖</span
+        ><span class="metric-label">PARADAS DA ROTA</span
+        ><strong>{{ routeStops.length }} <small>paradas</small></strong
+        ><span class="metric-foot">Próxima: Av. Central · 07:20</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-icon blue" aria-hidden="true">♧</span
+        ><span class="metric-label">ALUNOS A BORDO</span
+        ><strong>{{ occupancyCount }} <small>de 12 assentos</small></strong
+        ><span class="metric-foot">Capacidade demonstrativa</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-icon amber" aria-hidden="true">◷</span
+        ><span class="metric-label">CHEGADA À ESCOLA</span><strong>07:50 <small>h</small></strong
+        ><span class="metric-foot">Horário ilustrativo</span>
+      </article>
+    </div>
+
+    <div class="dashboard-columns">
+      <article class="dashboard-card driver-route-card">
+        <div class="card-heading">
+          <div>
+            <span class="card-eyebrow">VISÃO DA OPERAÇÃO</span>
+            <h2>Seu percurso de hoje</h2>
+          </div>
+          <span class="driver-route-tag small-tag">ROTA 01</span>
+        </div>
+        <div class="route-visual">
+          <div class="visual-route-line"><span class="route-progress"></span></div>
+          <span class="route-pin home-pin">⌂</span><span class="route-pin bus-pin">▰</span
+          ><span class="route-pin school-pin">✓</span>
+          <span class="visual-label start-label">Início da rota</span
+          ><span class="visual-label end-label">Escola Horizonte</span
+          ><span class="map-demo-caption">PERCURSO ILUSTRATIVO</span>
+        </div>
+        <div class="journey-meta">
+          <span><i class="meta-dot"></i> Partida: 07:00</span
+          ><span><i class="meta-dot destination"></i> Previsão: 07:50</span>
+        </div>
+        <button type="button" class="driver-primary-link" (click)="activeTab = 'rota'">
+          Abrir lista de paradas <span>→</span>
+        </button>
+      </article>
+
+      <article class="dashboard-card driver-next-stop">
+        <span class="card-eyebrow">PRÓXIMO EMBARQUE</span>
+        <h2>Av. Central, 845</h2>
+        <div class="driver-student">
+          <span class="student-avatar">PA</span
+          ><span><strong>Pedro Almeida</strong><small>Embarque previsto · 07:20</small></span>
+        </div>
+        <div class="driver-next-footer">
+          <span><i></i> Parada 2 de 4</span><span class="driver-countdown">PRÓXIMA</span>
+        </div>
+      </article>
+    </div>
+
+    <article class="dashboard-card driver-checklist">
+      <div class="card-heading">
+        <div>
+          <span class="card-eyebrow">PRÓXIMOS PASSOS</span>
+          <h2>Resumo da sua rota</h2>
+        </div>
+        <span class="occupancy-state"><span></span>{{ occupancyCount }} a bordo</span>
+      </div>
+      <div class="driver-mini-stops">
+        <div *ngFor="let stop of routeStops; let i = index">
+          <span class="mini-stop-number" [class.done]="stop.status !== 'Aguardando embarque'">{{
+            stop.status === 'Aguardando embarque' ? i + 1 : '✓'
+          }}</span
+          ><span
+            ><strong>{{ stop.student }}</strong
+            ><small>{{ stop.time }} · {{ stop.status }}</small></span
+          >
+        </div>
+      </div>
+    </article>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'rota'">
+    <article class="dashboard-card driver-stop-list">
+      <div class="card-heading route-list-heading">
+        <div>
+          <span class="card-eyebrow">ROTA DA MANHÃ · VAN ESCOLAR</span>
+          <h2>Paradas e embarques</h2>
+        </div>
+        <span class="occupancy-state"><span></span>{{ occupancyCount }} / 12 assentos</span>
+      </div>
+      <div class="stop-row" *ngFor="let stop of routeStops; let i = index">
+        <span class="stop-index" [class.stop-complete]="stop.status !== 'Aguardando embarque'">{{
+          i + 1
+        }}</span>
+        <span class="stop-row-main"
+          ><strong>{{ stop.student }}</strong
+          ><small>{{ stop.address }}</small></span
+        >
+        <span class="stop-row-time">{{ stop.time }}</span>
+        <span
+          class="stop-row-status"
+          [class.status-boarded]="stop.status === 'A bordo'"
+          [class.status-done]="stop.status === 'Desembarcou'"
+          >{{ stop.status }}</span
+        >
+        <button
+          class="stop-action"
+          type="button"
+          [disabled]="stop.status === 'Desembarcou'"
+          (click)="updateStop(stop)"
+        >
+          {{ stop.status === 'Aguardando embarque' ? 'Registrar embarque' : 'Registrar saída' }}
+        </button>
+      </div>
+      <p class="route-note">
+        Registre o embarque e a saída em cada parada. Os dados desta demonstração ficam somente
+        nesta sessão.
+      </p>
+    </article>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'avisos'">
+    <article class="dashboard-card driver-notices">
+      <div class="card-heading">
+        <div>
+          <span class="card-eyebrow">HISTÓRICO DA SESSÃO</span>
+          <h2>Registros da viagem</h2>
+        </div>
+        <span class="driver-route-tag small-tag">DEMO</span>
+      </div>
+      <div class="driver-notice" *ngFor="let notice of notifications">
+        <span class="notice-check">✓</span
+        ><span
+          ><strong>{{ notice.title }}</strong
+          ><small>{{ notice.detail }}</small></span
+        ><time>{{ notice.time }}</time>
+      </div>
+    </article>
+  </ng-container>
+</app-dashboard-layout>

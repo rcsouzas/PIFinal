@@ -1,0 +1,48 @@
+Visão geral do projeto ToAqui
+===========================
+
+O ToAqui é uma aplicação de demonstração para acompanhar transporte escolar. Ele simula três perfis de acesso: aluno, responsável e motorista, e fornece visualizações que ajudam a entender o trajeto, a paragem e o status da mobilidade.
+
+Objetivo da interface
+---------------------
+A proposta não é apenas entregar dados, mas criar confiança visual. O app precisa parecer seguro, limpo e fácil de ler, especialmente em contextos reais como dentro de um ônibus, com a luz baixa.
+
+O que existe no projeto
+------------------------
+- tela de login
+- seleção de perfil
+- painel de dashboard do aluno
+- painel de dashboard do responsável
+- painel de dashboard do motorista
+- controle de tema claro/escuro
+- marca visual com identidade própria
+
+Paterson da identidade visual
+----------------------------
+A identidade foi pensada com:
+- fundo escuro em tema noturno para reduzir brilho excessivo
+- bordas escuras para manter a separação visual sem “branquear” a tela
+- destaque em verde/teal para representar segurança, mobilidade e confiança
+- logo inspirada em ônibus + localização + status de confirmação
+
+Como a tela de login funciona
+----------------------------
+A tela de login é composta por dois blocos:
+1. painel de boas-vindas com contextualização institucional
+2. painel do formulário com login, perfil e campos de acesso
+
+Os elementos principais são:
+- .login-page: container da grade geral
+- .welcome-panel: área da esquerda chamada para apresentação
+- .form-panel: área da direita com os campos
+- .profile-option: opções de perfil (responsável, motorista, aluno)
+- .submit-button: botão principal de acesso
+
+Exemplo:
+
+  .login-page {
+    display: grid;
+    grid-template-columns: minmax(420px, 0.95fr) minmax(520px, 1.05fr);
+  }
+
+Esse padrão cria uma composição visual clara em desktop e reorganiza em mobile.

@@ -1,0 +1,593 @@
+TOAQUI: UM LIVRO PARA APRENDER, USAR E CUIDAR DO APLICATIVO
+==========================================================
+
+Uma explicacao calma, desde o primeiro clique ate a organizacao do projeto.
+Este guia foi escrito para quem quer aprender sem precisar conhecer
+programacao. Leia uma parte de cada vez e siga os passos na ordem.
+
+
+ANTES DE COMECAR: O QUE E ESTE TOAQUI?
+======================================
+
+O ToAqui e uma demonstracao de um aplicativo para acompanhar o transporte
+escolar. Ele mostra como poderiam funcionar tres tipos de conta:
+
+  ALUNO         Consulta a viagem, o assento e os avisos.
+  RESPONSAVEL   Acompanha a viagem e verifica o status do aluno.
+  MOTORISTA     Consulta as paradas e registra embarques e saidas.
+
+Pense nesta versao como uma maquete de uma casa. A maquete ajuda a ver onde
+ficariam os quartos e como se anda pela casa, mas ainda nao e a casa de verdade.
+Do mesmo modo, o site mostra as telas e algumas interacoes, mas ainda nao esta
+ligado a uma central real de transportes.
+
+Por isso, nomes, horarios, enderecos, avisos e localizacao que aparecem na tela
+sao exemplos inventados. O desenho do trajeto nao e um mapa GPS, nao mostra
+onde uma van esta de verdade e nao deve ser usado para organizar uma viagem
+real. Os registros do motorista valem somente enquanto a pagina esta aberta.
+
+
+CAPITULO 1: COMO ABRIR O TOAQUI
+===============================
+
+O programa que abre o site no computador e chamado de servidor de
+desenvolvimento. Imagine-o como uma pequena loja temporaria: enquanto ela esta
+aberta, podemos entrar pelo navegador e ver o site. Ao fechar o servidor, a
+loja fecha, mas os arquivos do projeto continuam guardados.
+
+Se estiver usando o VS Code com o projeto aberto:
+
+1. Abra o menu "Terminal" e escolha "Novo Terminal".
+2. Na linha de comando, escreva:
+
+     cd ToAqui
+
+   Depois pressione Enter. Esse passo leva o terminal para a pasta do
+   aplicativo.
+3. Escreva o comando abaixo e pressione Enter:
+
+     npm start -- --host 0.0.0.0
+
+4. Espere ate aparecer um endereco parecido com este:
+
+     http://localhost:4200/
+
+5. Abra esse endereco no navegador. O site deve aparecer.
+6. Para fechar o servidor, volte ao terminal e pressione Ctrl+C.
+
+Se o projeto ja estiver configurado no VS Code, tambem pode abrir a lista de
+tarefas e escolher "ToAqui: iniciar servidor de desenvolvimento". Essa opcao
+faz os mesmos passos de abertura por voce.
+
+Se aparecer uma mensagem dizendo que a porta ja esta em uso, provavelmente ha
+outro servidor aberto. Em vez de iniciar outro, confira se o endereco
+http://localhost:4200/ ja funciona.
+
+
+CAPITULO 2: COMO ENTRAR NAS CONTAS DE EXEMPLO
+=============================================
+
+Na primeira tela ha tres opcoes de perfil. Perfil e apenas uma maneira de
+dizer ao ToAqui qual tipo de pessoa esta entrando. Escolha um perfil, digite
+seu usuario e senha, e pressione "Entrar na minha conta".
+
+Use estas combinacoes para conhecer o prototipo:
+
+  Escolha "Aluno":
+    Usuario: rcs1
+    Senha:   1234
+
+  Escolha "Responsavel":
+    Usuario: rcs2
+    Senha:   1234
+
+  Escolha "Motorista":
+    Usuario: rcs3
+    Senha:   1234
+
+O perfil e o usuario precisam formar o par certo. Por exemplo, selecione
+"Aluno" ao usar rcs1. A senha e igual nas tres contas.
+
+O desenho de olho ao lado da senha serve para mostrar ou esconder o que foi
+digitado. Para voltar a tela inicial e experimentar outra conta, procure
+"Sair da conta" no menu do painel.
+
+Estas contas sao chaves de brinquedo para abrir a maquete. Elas nao sao contas
+privadas: qualquer pessoa que veja este guia pode usa-las. Nunca use a senha
+1234 para proteger dados reais.
+
+
+CAPITULO 3: UM PASSEIO PELOS TRES PAINEIS
+=========================================
+
+Os paineis foram decorados com a mesma ideia visual da entrada do ToAqui: verde
+azulado, formas suaves, botoes claros e cartoes que agrupam informacoes. O menu
+escuro fica de um lado da tela; o conteudo fica ao lado. Em um celular, o menu
+vai para o alto para que tudo continue facil de encontrar.
+
+3.1. O painel do aluno
+----------------------
+
+Entre escolhendo "Aluno", usuario rcs1 e senha 1234.
+
+Na pagina inicial do painel, observe:
+
+1. O cartao de status da viagem. Ele mostra a situacao de exemplo da rota.
+2. A previsao de chegada. O horario e ficticio, usado apenas para demonstrar
+   como uma previsao poderia ser apresentada.
+3. O cartao do assento. Ele mostra o nome de exemplo e se o lugar esta marcado
+   como ocupado ou livre.
+4. O desenho da rota. Ele ajuda a imaginar o percurso, mas nao e um mapa real.
+5. O cartao da proxima parada e a lista de avisos.
+
+Para visitar outras partes, use o menu e escolha "Viagem" ou "Avisos".
+O botao "Ver detalhes" tambem leva a parte da viagem.
+
+3.2. O painel do responsavel
+----------------------------
+
+Entre escolhendo "Responsavel", usuario rcs2 e senha 1234.
+
+Este painel foi pensado para dar uma resposta rapida a pergunta: "Como esta o
+transporte agora?". Veja o status, a previsao, o assento e o resumo do trajeto.
+Depois, abra "Viagem" para encontrar mais detalhes ou "Avisos" para ler as
+mensagens de exemplo.
+
+O nome, o endereco, a localizacao e os horarios sao inventados. O painel ainda
+nao envia mensagens a pais ou responsaveis e nao acompanha um veiculo de
+verdade.
+
+3.3. O painel do motorista
+--------------------------
+
+Entre escolhendo "Motorista", usuario rcs3 e senha 1234.
+
+O painel destaca a rota, o numero de lugares ocupados e a previsao de chegada.
+Abra "Minha rota" para ver as paradas em ordem. Em cada parada ha uma acao para
+registrar o movimento do aluno:
+
+1. Em uma parada ainda aguardando, pressione "Registrar embarque".
+2. O status muda para "A bordo", a contagem de ocupacao e atualizada e surge
+   um aviso no menu.
+3. Quando o aluno estiver a bordo, a acao permite registrar a saida.
+4. Depois da saida, a parada fica concluida e o aviso correspondente aparece
+   em "Avisos".
+
+Essas mudancas sao apenas uma encenacao para explorar a tela. Ao atualizar ou
+fechar a pagina, elas nao formam um registro oficial nem sao enviadas a uma
+escola.
+
+
+CAPITULO 4: COMO O VISUAL FOI ENFEITADO
+=======================================
+
+Quando queremos deixar uma sala mais bonita, escolhemos as cores, a luz e a
+posicao dos moveis. Em uma pagina, fazemos algo parecido:
+
+- A estrutura e o lugar de cada peca: titulo, menu, botoes e cartoes.
+- A aparencia e a decoracao: cores, tamanhos, espacos, bordas e sombras.
+- O comportamento e o que acontece quando tocamos em algo: abrir uma pagina,
+  mostrar um aviso ou mudar o estado de uma parada.
+
+Nesta melhoria, os paineis receberam:
+
+1. Um menu verde escuro que combina com o painel de boas-vindas da entrada.
+2. Uma faixa de saudacao em degradê, com texto claro e formas circulares
+   discretas no fundo.
+3. Cartoes com cantos arredondados, sombras leves e um pequeno movimento ao
+   passar o mouse, para mostrar que aquela area e importante.
+4. Uma rota ilustrada com cores mais vivas e pontos de embarque mais faceis de
+   distinguir.
+5. Uma adaptacao para telas estreitas: no celular, o menu fica no alto e os
+   cartoes se organizam um abaixo do outro.
+6. Um cuidado para quem prefere menos animacoes: nesse caso, os cartoes deixam
+   de se mover ao passar o mouse.
+
+O painel ainda avisa que esta em demonstracao. Deixar isso visivel e importante:
+uma tela bonita nao pode dar a impressao de que uma informacao inventada e real.
+
+
+CAPITULO 5: COMO EXPLORAR UMA IDEIA DE MUDANCA
+==============================================
+
+Antes de alterar o projeto, pense no resultado desejado. Em vez de dizer apenas
+"quero que fique melhor", escreva algo que possa ser visto, como:
+"quero que os avisos sejam mais faceis de ler no celular".
+
+Depois siga este pequeno roteiro:
+
+1. Abra o site e entre no perfil relacionado a ideia.
+2. Observe a tela em um computador e, se possivel, em um celular ou janela
+   estreita.
+3. Anote o que esta dificil: letras pequenas, botoes escondidos, cores pouco
+   contrastantes ou informacao fora de ordem.
+4. Escolha uma mudanca pequena e experimente. Assim fica mais facil entender o
+   que funcionou.
+5. Veja o resultado no navegador. O servidor normalmente atualiza a pagina
+   quando um arquivo e salvo.
+6. Experimente os outros perfis para conferir se a melhoria nao atrapalhou
+   outras pessoas.
+7. Execute as verificacoes explicadas no Capitulo 7.
+8. Conte neste livro o que mudou e como outra pessoa pode experimentar.
+
+Se uma mudanca deixar o site confuso ou quebrar uma parte, volte ao arquivo que
+foi alterado, desfaca apenas a ultima mudanca feita e tente de novo. Se nao
+souber qual arquivo mexer, peca ajuda antes de apagar ou substituir arquivos.
+
+
+CAPITULO 6: O QUE SIGNIFICAM ALGUMAS PALAVRAS
+=============================================
+
+APLICATIVO OU SITE
+  O programa que aparece no navegador. Neste projeto, a tela e construida com
+  Angular.
+
+ARQUIVO
+  Um documento guardado no projeto. Como paginas de um caderno, arquivos
+  diferentes cuidam de partes diferentes do ToAqui.
+
+CODIGO
+  Instrucoes escritas para o computador. Nao e necessario decorar codigo para
+  usar o site; para modifica-lo, basta aprender uma parte por vez.
+
+PAINEL
+  A area que aparece depois do login, com resumo, menu, viagem e avisos.
+
+PERFIL
+  O tipo de conta: aluno, responsavel ou motorista. Perfis podem ver informacoes
+  diferentes.
+
+SERVIDOR DE DESENVOLVIMENTO
+  O programa temporario que deixa o site aberto no computador enquanto fazemos
+  experiencias. Fechar o servidor nao apaga os arquivos.
+
+TESTE
+  Uma verificacao automatica que pergunta ao programa se uma tarefa continua
+  funcionando, por exemplo, se o login do motorista aceita a conta certa.
+
+BUILD
+  Uma verificacao que prepara e confere o site como um conjunto. Se ela
+  terminar sem erro, o projeto conseguiu ser compilado.
+
+BACKEND
+  A parte que ficaria protegida em um servidor real. Ela poderia conferir
+  senhas, guardar viagens e decidir quem tem permissao para ver cada dado. O
+  ToAqui demonstrativo ainda nao tem essa parte.
+
+GPS
+  Um recurso que pode informar a posicao de um dispositivo. O desenho de mapa
+  deste prototipo nao usa GPS.
+
+
+CAPITULO 7: COMO CONFERIR SE O PROJETO CONTINUA FUNCIONANDO
+===========================================================
+
+Para estas verificacoes, abra o terminal do VS Code, entre na pasta ToAqui com
+"cd ToAqui" e execute um comando de cada vez.
+
+PRIMEIRA VERIFICACAO: os testes
+
+1. Escreva:
+
+     npm test -- --watch=false
+
+2. Pressione Enter.
+3. Espere o processo terminar.
+4. Procure a mensagem que diz quantos testes passaram. Se aparecer uma falha,
+   anote a mensagem; ela costuma indicar o que precisa ser investigado.
+
+Os testes atuais verificam os logins, a separacao das credenciais, a saida da
+conta, o encaminhamento ao perfil escolhido e a atualizacao demonstrativa
+das paradas do motorista.
+
+SEGUNDA VERIFICACAO: a compilacao
+
+1. Escreva:
+
+     npm run build
+
+2. Pressione Enter e espere terminar.
+3. Se o resultado disser que a compilacao foi concluida, o projeto passou por
+   essa verificacao. Um aviso de tamanho do estilo da entrada pode aparecer; um
+   aviso nao e o mesmo que um erro que interrompe a compilacao.
+
+
+CAPITULO 8: COMO MANTER ESTE LIVRO ATUALIZADO
+=============================================
+
+Este arquivo acompanha o ToAqui. Sempre que uma tela, uma regra, uma cor, um
+botao ou uma informacao mudar, atualize tambem o livro. Assim, quem chegar
+depois conseguira aprender o que mudou e como experimentar sozinho.
+
+Quando fizer uma mudanca, siga estes passos:
+
+1. Escreva a data da mudanca no fim deste livro.
+2. Conte com palavras simples o que mudou e por que.
+3. Explique o caminho para encontrar a mudanca na tela. Por exemplo:
+   "Entre como motorista e escolha Minha rota".
+4. Ensine como experimentar a mudanca, com passos numerados e o resultado que
+   a pessoa deve observar.
+5. Se uma informacao antiga deixou de ser verdadeira, corrija-a. Nao deixe no
+   livro instrucoes que ja nao combinam com o site.
+6. Se os perfis, as contas ou os botoes mudarem, atualize tambem os capitulos 2
+   e 3.
+7. Se aparecer um arquivo novo, acrescente-o a lista no fim deste capitulo.
+8. Verifique os testes e a compilacao antes de dizer que tudo esta pronto.
+
+Uma regra importante: nunca escreva que uma funcao e real sem ter certeza.
+Quando algo for apenas um exemplo, chame de demonstracao. Quando uma funcao
+real for ligada no futuro, explique qual parte de fato funciona e o que ainda
+esta em construcao.
+
+O projeto agora esta organizado como uma estante: cada pasta tem um assunto.
+Se quiser mudar algo, primeiro encontre o assunto na lista abaixo e abra
+somente os arquivos daquela pasta.
+
+  src/app/app.ts e src/app/app.html
+    A porta de entrada do Angular. O HTML contem apenas o espaco em que a tela
+    escolhida pelo endereco sera mostrada. Nao e aqui que ficam os paineis.
+
+  src/app/auth/demo-credentials.ts
+    O unico arquivo do codigo onde estao guardados os nomes de usuario e as
+    senhas de demonstracao. E uma lista de exemplo, nao um cofre seguro.
+
+  src/app/auth/auth.service.ts
+    Confere os dados de entrada usando a lista central e lembra qual perfil
+    entrou enquanto esta sessao do site estiver aberta.
+
+  src/app/auth/profile.guard.ts
+    Porteiro das paginas: impede que uma conta entre no painel de outro perfil.
+
+  src/app/auth/profile.ts
+    Os nomes padronizados dos perfis e das abas usados pelas telas.
+
+  src/app/auth/route-stop.ts
+    O formato dos dados de uma parada e os tres estados de embarque.
+
+  src/app/login/
+    A tela de entrada. O arquivo login.component.html organiza os campos e
+    botoes; login.component.ts cuida das acoes; login.component.scss decora
+    somente o login.
+
+  src/app/aluno/
+    Tudo que pertence ao painel do aluno. O HTML e a aparencia ficam junto da
+    logica do aluno, cada um em seu arquivo.
+
+  src/app/responsavel/
+    Tudo que pertence ao painel do responsavel, separado da tela de aluno e
+    da tela de motorista.
+
+  src/app/motorista/
+    Tudo que pertence ao painel do motorista, inclusive as paradas e os
+    registros de embarque e saida.
+
+  src/app/dashboard/
+    A moldura compartilhada: menu, cabecalho, saudacao e rodape que aparecem
+    nos tres paineis. A funcao e visual compartilhada fica aqui; o conteudo
+    particular de cada perfil continua na pasta daquele perfil.
+
+  src/app/dashboard/dashboard-layout.scss
+    A aparencia compartilhada do menu, cabecalho, cartoes e moldura. Cada
+    perfil fornece suas cores nos proprios arquivos SCSS.
+
+  src/app/theme/theme.service.ts
+    O controle central do modo claro e do modo escuro. Ele tambem guarda a
+    escolha para que ela continue depois que a pagina for atualizada.
+
+  src/theme.scss
+    As cores gerais do site e as regras que adaptam todas as telas ao modo
+    escuro.
+
+  src/styles.scss
+    O arquivo geral que carrega os estilos compartilhados da moldura.
+
+  src/app/app-routing-module.ts
+    O mapa de enderecos: escolhe login, painel de aluno, de responsavel ou de
+    motorista.
+
+  Arquivos terminados em .spec.ts
+    Testes automaticos. Eles verificam se as partes principais continuam
+    funcionando depois de uma mudanca.
+
+  src/index.html
+    Idioma, titulo e descricao que o navegador recebe.
+
+  PASSO_A_PASSO.txt
+    Este livro de instrucoes.
+
+
+CAPITULO EXTRA: COMO OS CODIGOS FORAM SEPARADOS
+================================================
+
+Antes, o mesmo arquivo guardava o login, os paineis de todas as pessoas, as
+paradas, as cores e os avisos. Era como colocar todas as materias de uma escola
+em uma unica pagina de caderno. Uma pequena mudanca ficava dificil de localizar.
+
+Agora cada parte tem uma morada:
+
+1. Para mudar os campos, textos ou aparencia da entrada, procure a pasta
+   "src/app/login".
+2. Para mudar a verificacao de usuario e senha, procure
+   "src/app/auth/auth.service.ts".
+3. Para encontrar os valores das contas de demonstracao, abra
+   "src/app/auth/demo-credentials.ts". Esse arquivo e o lugar central para
+   alterar as credenciais do codigo.
+4. Para mudar o que o aluno ve ou faz, abra "src/app/aluno".
+5. Para mudar o que o responsavel ve ou faz, abra "src/app/responsavel".
+6. Para mudar o que o motorista ve ou faz, abra "src/app/motorista".
+7. Para mudar o menu, o cabecalho ou a moldura igual para os tres paineis,
+   procure "src/app/dashboard".
+8. Para mudar o endereco que leva a cada tela, abra
+   "src/app/app-routing-module.ts".
+9. Para trocar uma credencial de demonstracao no codigo, altere a conta
+   correspondente em "src/app/auth/demo-credentials.ts". A tela de login e os
+   testes leem essa mesma lista, para evitar manter copias diferentes.
+
+Cada tela costuma ter tres arquivos com o mesmo comeco de nome:
+
+  component.ts    = as regras e acoes da tela.
+  component.html  = os textos, botoes e pecas que aparecem.
+  component.scss  = as cores, os tamanhos e a decoracao daquela tela.
+
+Por exemplo, "student-dashboard.component.html" e a pagina que o aluno ve;
+"student-dashboard.component.ts" contem suas informacoes e a troca de abas;
+"student-dashboard.component.scss" cuida da decoracao do aluno. Os nomes
+"parent" e "driver" seguem a mesma ideia para responsavel e motorista.
+
+Uma moldura compartilhada evita copiar o mesmo menu tres vezes. Se o menu
+precisar mudar para todos, altere a pasta "dashboard". Se apenas uma tela
+precisar mudar, altere a pasta daquele perfil. Assim, cada ajuste fica no lugar
+mais facil de encontrar.
+
+
+CAPITULO 9: SEGURANCA E O QUE FALTA PARA USO DE VERDADE
+=======================================================
+
+As contas e senhas deste projeto estao escritas na parte que o navegador recebe.
+Isso e aceitavel apenas para uma demonstracao com informacoes inventadas. Nao
+coloque aqui nomes, enderecos, senhas ou dados de criancas reais.
+
+Para transformar o prototipo em um servico real, a equipe precisara criar e
+verificar, entre outras coisas:
+
+- Um servidor protegido que confira as credenciais e as permissoes.
+- Uma forma segura de guardar senhas, criada especificamente para senhas.
+- Uma conexao protegida entre o aplicativo e o servidor.
+- Regras claras para proteger dados pessoais e respeitar a LGPD.
+- Um mapa ligado a uma fonte real de localizacao, com autorizacoes apropriadas.
+- Um lugar confiavel para guardar viagens, embarques, saidas e ocorrencias.
+- Backups, controle de acesso e um plano para corrigir problemas.
+- Testes em aparelhos e navegadores que a escola pretende utilizar.
+
+SHA-256 sozinho nao e uma maneira adequada de guardar senhas. Tambem nao basta
+desenhar um simbolo de cadeado na tela para que os dados estejam protegidos. A
+protecao precisa existir e ser conferida nas partes que guardam e transportam
+os dados.
+
+
+REGISTRO DE APRENDIZADO
+=======================
+
+2026-10-22
+  Foram montados os tres acessos de demonstracao, seus paineis, exemplos de
+  rota, assento e avisos. O primeiro guia de uso tambem foi criado.
+
+2026-10-22
+  Os paineis receberam um visual mais proximo da tela inicial: menu escuro,
+  saudacao em degradê, cartoes com sombras leves e uma rota ilustrada com mais
+  contraste. O guia foi reescrito como um livro para iniciantes, com passos
+  para abrir o site, experimentar os perfis e verificar o projeto.
+
+2026-10-22
+  Cada perfil ganhou detalhes de CSS proprios. O painel do aluno usa tons de
+  azul, o painel do responsavel mantem tons de verde e o painel do motorista
+  recebe tons quentes.
+
+2026-10-22
+  O codigo foi reorganizado em pastas para login, autenticacao, aluno,
+  responsavel, motorista e moldura compartilhada. As credenciais de teste
+  agora ficam juntas em demo-credentials.ts. Para conferir, abra cada perfil,
+  use as abas do menu e saia da conta antes de testar o perfil seguinte.
+  A verificacao final passou nos nove testes automatizados e na compilacao do
+  aplicativo.
+
+COMO ENTENDER E REPETIR A PERSONALIZACAO
+----------------------------------------
+
+CSS e a parte que escolhe a roupa da pagina: cores, tamanhos, bordas e espacos.
+Agora cada perfil tem seu proprio arquivo de decoracao:
+
+  Aluno:      src/app/aluno/student-dashboard.component.scss
+  Responsavel: src/app/responsavel/parent-dashboard.component.scss
+  Motorista:   src/app/motorista/driver-dashboard.component.scss
+
+A moldura igual nos tres paineis tem seus estilos em
+"src/app/dashboard/dashboard-layout.scss". O navegador combina a moldura comum
+com os detalhes proprios de cada perfil.
+
+Para conferir sem escrever codigo:
+
+1. Abra o site e entre como Aluno usando rcs1 e 1234.
+2. Repare que a faixa de saudacao e os detalhes dos cartoes puxam para azul.
+3. Saia da conta e entre como Responsavel com rcs2 e 1234. A cor principal
+   volta para verde.
+4. Saia outra vez e entre como Motorista com rcs3 e 1234. Os detalhes ganham
+   tons quentes, lembrando uma rota e um painel de operacao.
+5. Abra a opcao de viagem ou rota em cada perfil. Os botoes e o destaque de
+   localizacao acompanham as cores daquele perfil.
+
+Para aprender onde uma cor e escolhida, abra o arquivo SCSS do perfil que quer
+alterar. No comeco do arquivo ha tres linhas parecidas com estas:
+
+  --profile-accent: #5684bd;
+  --profile-soft: #eaf2fb;
+
+No arquivo do aluno, a primeira linha guarda a cor principal e a segunda uma
+versao suave usada nos fundos. Cada perfil possui seus proprios valores, por
+isso uma mudanca no arquivo de aluno nao precisa alterar responsavel ou
+motorista. O sinal "#" e seguido por um codigo de cor.
+
+Se quiser experimentar uma nova cor:
+
+1. Primeiro anote o codigo original para poder voltar atras.
+2. Mude somente uma das linhas de cor do arquivo daquele perfil.
+3. Salve o arquivo e espere a pagina atualizar.
+4. Entre no perfil correspondente e observe o resultado.
+5. Se a cor ficar dificil de ler, volte ao codigo original ou escolha uma cor
+   com mais contraste. Texto importante precisa continuar facil de enxergar.
+6. Depois de aprovar a mudanca, atualize este registro para que outra pessoa
+   saiba o que mudou e como conferir.
+
+
+CAPITULO EXTRA: COMO USAR E AJUSTAR O MODO ESCURO
+==================================================
+
+O modo escuro troca o fundo claro por tons mais escuros e ajusta as letras para
+continuarem legiveis. A escolha pode ser feita tanto na entrada quanto dentro
+dos paineis. Ela continua valendo depois de trocar de perfil ou atualizar a
+pagina.
+
+Para experimentar:
+
+1. Abra o ToAqui no navegador.
+2. Na tela de entrada, procure o botao "Modo escuro", perto do formulario.
+3. Clique nele. O fundo e os cartoes devem ficar escuros e o texto deve ficar
+   claro.
+4. Clique novamente em "Modo claro" para voltar ao visual original.
+5. Entre em qualquer perfil. No alto da tela ha outro botao para trocar o
+   tema sem sair da conta.
+6. Atualize a pagina. O site deve manter a ultima escolha.
+
+Se o navegador estiver configurado para bloquear o armazenamento de
+preferencias, o tema ainda funciona enquanto o site estiver aberto, mas pode
+nao ser lembrado depois de fechar ou atualizar a pagina.
+
+Para encontrar cada parte:
+
+1. Abra "src/app/theme/theme.service.ts" para ver como a escolha e alternada e
+   lembrada.
+2. Abra "src/theme.scss" para mudar as cores gerais do tema escuro.
+3. Para ajustar apenas os detalhes azuis do aluno, verdes do responsavel ou
+   quentes do motorista, continue usando o arquivo SCSS daquele perfil.
+4. Salve o arquivo e confira a pagina no navegador. O servidor de
+   desenvolvimento atualiza a tela automaticamente.
+
+Ao escolher uma nova cor, confira os dois modos. Uma cor legivel no fundo
+claro pode desaparecer no fundo escuro. Mantenha texto e botoes importantes
+com contraste suficiente.
+
+REGISTRO DE APRENDIZADO
+-----------------------
+
+2026-10-22
+  Foi adicionado um controle de tema compartilhado entre entrada e paineis.
+  A preferencia fica salva no navegador, os componentes continuam separados e
+  os estilos do tema ficam no arquivo geral src/theme.scss. O controle pode
+  ser conferido pelos testes do ThemeService e alternando o botao no site.
+
+
+FIM DESTA EDICAO
+================
+
+Uma boa tela ajuda a pessoa a encontrar seu caminho. Um bom guia ajuda a
+proxima pessoa a aprender a fazer o mesmo.

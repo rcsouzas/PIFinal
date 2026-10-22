@@ -1,0 +1,234 @@
+:host {
+  --profile-accent: #668bb8;
+  --profile-soft: rgba(102, 139, 184, 0.12);
+  display: block;
+}
+
+.student-welcome {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 15px;
+  padding: 17px 20px;
+  overflow: hidden;
+  border: 1px solid rgba(37, 67, 89, 0.12);
+  border-radius: 15px;
+  background: linear-gradient(110deg, rgba(227, 238, 248, 0.95), rgba(247, 250, 252, 0.96));
+}
+
+.welcome-icon,
+.tip-sun,
+.notice-sticker {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--profile-soft);
+  color: var(--profile-accent);
+  font-size: 18px;
+}
+
+.student-welcome div {
+  display: grid;
+  gap: 4px;
+}
+
+.student-welcome div > span {
+  color: var(--profile-accent);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.student-welcome strong {
+  color: #244664;
+  font-size: 15px;
+}
+
+.student-welcome p {
+  margin: 0;
+  color: #72869b;
+  font-size: 10px;
+}
+
+.welcome-illustration {
+  margin-left: auto;
+  color: rgba(86, 132, 189, 0.2);
+  font-size: 48px;
+}
+
+.metric-card:first-child .metric-icon {
+  background: var(--profile-soft);
+  color: var(--profile-accent);
+}
+
+.student-trip-badge {
+  padding: 6px 9px;
+  border: 1px solid rgba(42, 76, 111, 0.12);
+  border-radius: 20px;
+  background: rgba(221, 235, 248, 0.76);
+  color: #58799b;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.student-tip {
+  display: flex;
+  min-height: 250px;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(145deg, rgba(231, 239, 249, 0.72), rgba(255, 255, 255, 0.96));
+}
+
+.student-tip .tip-sun {
+  width: 34px;
+  height: 34px;
+  flex-basis: 34px;
+  margin-top: 18px;
+  border-radius: 50%;
+  background: rgba(241, 201, 118, 0.22);
+  color: #b48536;
+}
+
+.student-tip h2,
+.student-route-page h2,
+.student-notice h2 {
+  margin: 13px 0 7px;
+  color: #244664;
+  font-size: 16px;
+}
+
+.student-tip p,
+.student-notice p {
+  max-width: 320px;
+  margin: 0;
+  color: #74889c;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+.tip-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 15px;
+  color: #6888ad;
+  font-size: 9px;
+}
+
+.tip-bottom span {
+  color: #cf8793;
+}
+
+.student-route-page {
+  padding: 25px;
+}
+
+.student-route-page h2 {
+  font-size: 19px;
+}
+
+.route-intro {
+  margin: 0;
+  color: #74889c;
+  font-size: 10px;
+}
+
+.student-timeline {
+  display: grid;
+  margin-top: 22px;
+}
+
+.timeline-stop {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  min-height: 67px;
+}
+
+.timeline-stop:not(:last-child)::after {
+  position: absolute;
+  top: 28px;
+  bottom: 0;
+  left: 13px;
+  border-left: 1px dashed rgba(54, 93, 121, 0.25);
+  content: '';
+}
+
+.timeline-stop > span {
+  z-index: 1;
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  place-items: center;
+  border: 1px solid rgba(56, 91, 119, 0.14);
+  border-radius: 50%;
+  background: #f1f5f8;
+  color: #8394a2;
+  font-size: 9px;
+}
+
+.timeline-stop.complete > span,
+.timeline-stop.current > span {
+  border-color: rgba(87, 131, 174, 0.24);
+  background: #e4edf6;
+  color: #5684bd;
+}
+
+.timeline-stop.current > span {
+  box-shadow: 0 0 0 4px rgba(102, 139, 184, 0.1);
+}
+
+.timeline-stop strong,
+.timeline-stop small {
+  display: block;
+}
+
+.timeline-stop strong {
+  padding-top: 3px;
+  color: #415b75;
+  font-size: 10px;
+}
+
+.timeline-stop small {
+  margin-top: 5px;
+  color: #8999a9;
+  font-size: 9px;
+}
+
+.student-notice {
+  position: relative;
+  min-height: 190px;
+  padding: 24px;
+  overflow: hidden;
+  border-color: rgba(37, 67, 89, 0.12);
+  background: linear-gradient(115deg, rgba(227, 238, 248, 0.94), rgba(249, 252, 255, 0.96));
+}
+
+.student-notice .notice-sticker {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(241, 201, 118, 0.22);
+  color: #b48536;
+}
+
+.student-notice > .card-eyebrow {
+  color: #6888ad;
+}
+
+.student-notice h2 {
+  margin-top: 14px;
+  font-size: 19px;
+}
+
+.notice-time {
+  display: block;
+  margin-top: 19px;
+  color: #8a9bae;
+  font-size: 9px;
+}

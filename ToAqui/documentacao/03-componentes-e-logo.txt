@@ -1,0 +1,43 @@
+Componentes e logo do ToAqui
+============================
+
+A marca foi desenhada para simbolizar transporte, localização e confirmação de status. A solução visual combina:
+- frente de ônibus minimalista
+- ponto de localização
+- duas marcações de confirmação em estilo visual de chat
+
+Estrutura da logo
+------------------
+A marca está em SVG dentro do HTML. Ela usa formas simples e geométricas para manter o desenho nítido mesmo em pequenos tamanhos.
+
+Exemplo simplificado do desenho:
+
+  <svg viewBox="0 0 48 48" aria-hidden="true">
+    <path d="M7 18a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5v14H7V18Z" />
+    <rect x="11" y="17" width="26" height="11" rx="3" />
+    <path d="m15 23 2.2 2.2 4.2-4.4m2.4 2.2 2.2 2.2 4.2-4.4" />
+    <path d="M31 6.5a6 6 0 0 1 12 0c0 4.2-6 10-6 10s-6-5.8-6-10Z" />
+  </svg>
+
+Esse SVG cria a combinação de:
+- ônibus -> retângulo frontal
+- localização -> marcador de mapa sobre o ônibus
+- validação -> duas marcas de confirmação no para-brisa
+
+Como reutilizar a logo
+----------------------
+Ela aparece na área de boas-vindas, na identificação mobile da tela inicial e na sidebar do painel.
+
+Em cada local, o bloco é o mesmo, mas o CSS ajusta o tamanho dependendo do contexto.
+
+Exemplo:
+
+  .brand-mark {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: linear-gradient(...);
+  }
+
+Isso assegura consistência na aparência sem duplicar imagens externas.

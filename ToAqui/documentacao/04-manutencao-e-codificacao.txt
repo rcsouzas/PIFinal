@@ -1,0 +1,56 @@
+Manutenção e codificação
+========================
+
+Quando quiser evoluir o projeto, siga este fluxo simples:
+
+1. Entenda o que está sendo alterado
+2. Ajuste o tema global
+3. Ajuste o CSS do componente específico
+4. Teste a compilação
+5. Valide em desktop e mobile
+
+Exemplo 1: alteração da cor principal
+-------------------------------------
+Arquivo: src/theme.scss
+
+  :root {
+    --app-accent: #1d8d8a;
+  }
+
+Isso reflita automaticamente em botões, destaques e elementos ativos.
+
+Exemplo 2: ajuste do botão de login
+-----------------------------------
+Arquivo: src/app/login/login.component.scss
+
+  .submit-button {
+    background: linear-gradient(135deg, #1a8a82, #0d6d67);
+    border-radius: 12px;
+  }
+
+Se quiser trocar a aparência do botão principal, edite somente esta classe.
+
+Exemplo 3: ajuste do menu do dashboard
+-------------------------------------
+Arquivo: src/app/dashboard/dashboard-layout.scss
+
+  .dashboard-nav button.active {
+    background: linear-gradient(135deg, rgba(28, 122, 118, 0.28), rgba(17, 52, 57, 0.8));
+  }
+
+Exemplo 4: ativação de dark mode
+--------------------------------
+A lógica do tema é controlada em:
+
+- src/app/theme/theme.service.ts
+- src/theme.scss
+
+Se o projeto for atualizado, vale manter a lógica de dados do documento HTML e a persistência no localStorage.
+
+Validação final
+---------------
+Antes de fechar a tarefa, execute:
+
+  npm run build
+
+Este comando garante que o CSS, o HTML e a lógica Angular continuam funcionando juntos.

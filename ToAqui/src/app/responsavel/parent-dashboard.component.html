@@ -1,0 +1,175 @@
+<app-dashboard-layout
+  [profile]="'responsavel'"
+  [activeTab]="activeTab"
+  [title]="title"
+  [subtitle]="subtitle"
+  (tabChange)="activeTab = $event"
+>
+  <ng-container *ngIf="activeTab === 'inicio'">
+    <section class="family-welcome">
+      <span class="family-shield" aria-hidden="true">✓</span>
+      <div>
+        <span>ACOMPANHAMENTO DA FAMÍLIA</span><strong>Mariana está no caminho certo.</strong>
+        <p>Veja as informações da viagem da manhã em um só lugar.</p>
+      </div>
+      <span class="family-decoration" aria-hidden="true">♡</span>
+    </section>
+
+    <div class="metric-grid">
+      <article class="metric-card">
+        <span class="metric-icon teal" aria-hidden="true">⌖</span
+        ><span class="metric-label">STATUS DO TRANSPORTE</span
+        ><strong class="metric-status"><span class="live-dot"></span> Em andamento</strong
+        ><span class="metric-foot">Viagem da manhã · saída às 07:00</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-icon blue" aria-hidden="true">◷</span
+        ><span class="metric-label">PREVISÃO NA ESCOLA</span><strong>07:50 <small>h</small></strong
+        ><span class="metric-foot">Escola Horizonte · horário ilustrativo</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-icon amber" aria-hidden="true">▣</span
+        ><span class="metric-label">ASSENTO DA MARIANA</span
+        ><strong>{{ studentOnboard ? 'Ocupado' : 'Livre' }}</strong
+        ><span class="metric-foot">Assento 04 · informação de exemplo</span>
+      </article>
+    </div>
+
+    <div class="dashboard-columns">
+      <article class="dashboard-card journey-card">
+        <div class="card-heading">
+          <div>
+            <span class="card-eyebrow">ACOMPANHAMENTO</span>
+            <h2>Trajeto até a escola</h2>
+          </div>
+          <span class="family-trip-badge">ROTA DA MANHÃ</span>
+        </div>
+        <div class="route-visual">
+          <div class="visual-route-line"><span class="route-progress"></span></div>
+          <span class="route-pin home-pin">⌂</span><span class="route-pin bus-pin">▰</span
+          ><span class="route-pin school-pin">✓</span>
+          <span class="visual-label start-label">Ponto de embarque</span
+          ><span class="visual-label end-label">Escola Horizonte</span
+          ><span class="map-demo-caption">MAPA ILUSTRATIVO</span>
+        </div>
+        <div class="journey-meta">
+          <span><i class="meta-dot"></i> Saída: 07:00</span
+          ><span><i class="meta-dot destination"></i> Previsão: 07:50</span>
+        </div>
+      </article>
+
+      <article class="dashboard-card family-driver">
+        <span class="card-eyebrow">EQUIPE DA VIAGEM</span>
+        <h2>Seu transporte escolar</h2>
+        <div class="driver-profile">
+          <span class="driver-avatar">C</span
+          ><span><strong>Carlos</strong><small>Motorista da rota</small></span
+          ><span class="verified-mark" aria-label="Perfil demonstrativo">✓</span>
+        </div>
+        <div class="family-divider"></div>
+        <div class="vehicle-summary">
+          <span class="vehicle-icon">▰</span
+          ><span><strong>Van escolar</strong><small>Veículo de demonstração</small></span>
+        </div>
+        <button class="family-link" type="button" (click)="activeTab = 'rota'">
+          Ver detalhes da viagem <span>→</span>
+        </button>
+      </article>
+    </div>
+
+    <article class="dashboard-card family-seat">
+      <div class="card-heading">
+        <div>
+          <span class="card-eyebrow">SEGURANÇA A BORDO</span>
+          <h2>Confirmação do assento</h2>
+        </div>
+        <span class="occupancy-state" [class.seat-free]="!studentOnboard"
+          ><span></span>{{ studentOnboard ? 'Em uso' : 'Livre' }}</span
+        >
+      </div>
+      <div class="seat-content">
+        <span class="seat-illustration">▣</span
+        ><span
+          ><strong>Mariana Costa · assento 04</strong
+          ><small>{{
+            studentOnboard
+              ? 'Embarque marcado como confirmado nesta demonstração.'
+              : 'Desembarque marcado nesta demonstração.'
+          }}</small></span
+        ><span class="seat-date">Hoje · rota da manhã</span>
+      </div>
+    </article>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'rota'">
+    <div class="dashboard-columns">
+      <article class="dashboard-card family-route-detail">
+        <span class="card-eyebrow">ROTA ESCOLAR · MANHÃ</span>
+        <h2>Trajeto da Mariana</h2>
+        <p>Uma visão ilustrativa das etapas entre o ponto de embarque e a escola.</p>
+        <div class="parent-timeline">
+          <div class="parent-stop done">
+            <span>✓</span>
+            <div><strong>Viagem iniciada</strong><small>Saída do transporte · 07:00</small></div>
+          </div>
+          <div class="parent-stop done">
+            <span>✓</span>
+            <div><strong>Mariana embarcou</strong><small>Ponto combinado · 07:10</small></div>
+            <em>Confirmado</em>
+          </div>
+          <div class="parent-stop next">
+            <span>2</span>
+            <div><strong>Próxima parada</strong><small>Av. Central, 845 · 07:20</small></div>
+          </div>
+          <div class="parent-stop">
+            <span>3</span>
+            <div>
+              <strong>Chegada à escola</strong><small>Previsão demonstrativa · 07:50</small>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="dashboard-card family-reassurance">
+        <span class="reassurance-icon">♡</span
+        ><span class="card-eyebrow">CUIDADO EM CADA TRAJETO</span>
+        <h2>Uma viagem mais tranquila</h2>
+        <p>O painel reúne o status, o assento e as paradas para facilitar a consulta da família.</p>
+        <small>Os dados apresentados nesta versão são exemplos fictícios.</small>
+      </article>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'avisos'">
+    <article class="dashboard-card parent-notifications">
+      <div class="card-heading">
+        <div>
+          <span class="card-eyebrow">ROTA DA MANHÃ</span>
+          <h2>Atualizações da viagem</h2>
+        </div>
+        <span class="family-trip-badge">HOJE</span>
+      </div>
+      <div class="parent-notice">
+        <span>✓</span>
+        <div>
+          <strong>Viagem iniciada</strong><small>O transporte saiu para buscar os alunos.</small>
+        </div>
+        <time>07:00</time>
+      </div>
+      <div class="parent-notice">
+        <span>✓</span>
+        <div>
+          <strong>Mariana embarcou</strong><small>Embarque registrado no ponto combinado.</small>
+        </div>
+        <time>07:10</time>
+      </div>
+      <div class="parent-notice">
+        <span>⌖</span>
+        <div>
+          <strong>Próxima parada</strong
+          ><small>Av. Central, 845 · previsão ilustrativa 07:20.</small>
+        </div>
+        <time>07:16</time>
+      </div>
+    </article>
+  </ng-container>
+</app-dashboard-layout>

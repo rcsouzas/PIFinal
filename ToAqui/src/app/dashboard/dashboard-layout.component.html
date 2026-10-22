@@ -1,0 +1,91 @@
+<main [class]="'dashboard-shell role-' + profile">
+  <aside class="dashboard-sidebar">
+    <a class="brand dashboard-brand" routerLink="/" aria-label="ToAqui">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M7 18a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5v14H7V18Z" fill="#102732" />
+          <rect x="11" y="17" width="26" height="11" rx="3" fill="#e7f7f3" />
+          <path d="m15 23 2.2 2.2 4.2-4.4m2.4 2.2 2.2 2.2 4.2-4.4" fill="none" stroke="#167d72" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" />
+          <path d="M10 32h28" stroke="#102732" stroke-linecap="round" stroke-width="3" />
+          <circle cx="14" cy="33" r="3" fill="#102732" />
+          <circle cx="34" cy="33" r="3" fill="#102732" />
+          <path d="M31 6.5a6 6 0 0 1 12 0c0 4.2-6 10-6 10s-6-5.8-6-10Z" fill="#e7f7f3" stroke="#102732" stroke-linejoin="round" stroke-width="1.6" />
+          <circle cx="37" cy="6.5" r="1.8" fill="#167d72" />
+        </svg>
+      </span>
+      <span>ToAqui<span class="brand-period">.</span></span>
+    </a>
+
+    <div class="sidebar-label">MENU PRINCIPAL</div>
+    <nav class="dashboard-nav" aria-label="Menu principal">
+      <button type="button" [class.active]="activeTab === 'inicio'" (click)="selectTab('inicio')">
+        <span aria-hidden="true">⌂</span> Visão geral
+      </button>
+      <button type="button" [class.active]="activeTab === 'rota'" (click)="selectTab('rota')">
+        <span aria-hidden="true">⌖</span>
+        {{ profile === 'motorista' ? 'Minha rota' : 'Viagem' }}
+      </button>
+      <button type="button" [class.active]="activeTab === 'avisos'" (click)="selectTab('avisos')">
+        <span aria-hidden="true">♧</span> Avisos
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="demo-side-note"><span class="live-dot"></span> Ambiente de demonstração</div>
+      <button class="logout-button" type="button" (click)="logout()">
+        <span aria-hidden="true">↪</span> Sair da conta
+      </button>
+    </div>
+  </aside>
+
+  <section class="dashboard-main">
+    <header class="dashboard-topbar">
+      <div class="breadcrumb">ToAqui <span>/</span> {{ profileName }}</div>
+      <div class="topbar-actions">
+        <button
+          class="theme-toggle dashboard-theme-toggle"
+          type="button"
+          [attr.aria-label]="theme.isDark() ? 'Ativar modo claro' : 'Ativar modo escuro'"
+          [attr.aria-pressed]="theme.isDark()"
+          (click)="toggleTheme()"
+        >
+          <span aria-hidden="true">{{ theme.isDark() ? '☀' : '☾' }}</span>
+          <span>{{ theme.isDark() ? 'Modo claro' : 'Modo escuro' }}</span>
+        </button>
+        <div class="topbar-user">
+          <span class="user-avatar">{{ profileName.slice(0, 1) }}</span>
+          <span><strong>{{ username }}</strong><small>{{ profileName }}</small></span>
+          <span class="demo-badge">DEMO</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+      <div class="dashboard-heading">
+        <div>
+          <span class="form-eyebrow">{{ todayLabel }}</span>
+          <h1>{{ title }}</h1>
+          <p>{{ subtitle }}</p>
+        </div>
+        <div class="last-update">
+          <span class="live-dot"></span> Atualizado às {{ lastUpdateLabel }}
+        </div>
+      </div>
+
+      <div class="demo-banner">
+        <span class="demo-banner-icon" aria-hidden="true">i</span>
+        <span
+          ><strong>Modo demonstração.</strong> As informações e a localização exibidas são
+          ilustrativas e não representam dados em tempo real.</span
+        >
+      </div>
+
+      <ng-content></ng-content>
+    </div>
+
+    <footer class="dashboard-footer">
+      <span>ToAqui · Transporte escolar com mais tranquilidade</span>
+      <span>Protótipo demonstrativo</span>
+    </footer>
+  </section>
+</main>

@@ -1,0 +1,140 @@
+<app-dashboard-layout
+  [profile]="'aluno'"
+  [activeTab]="activeTab"
+  [title]="title"
+  [subtitle]="subtitle"
+  (tabChange)="activeTab = $event"
+>
+  <ng-container *ngIf="activeTab === 'inicio'">
+    <section class="student-welcome">
+      <span class="welcome-icon" aria-hidden="true">✦</span>
+      <div>
+        <span>SEU DIA COMEÇA COM TRANQUILIDADE</span><strong>Bom dia, Mariana!</strong>
+        <p>A van está a caminho. Veja os detalhes da sua viagem.</p>
+      </div>
+      <span class="welcome-illustration" aria-hidden="true">▰</span>
+    </section>
+
+    <div class="metric-grid">
+      <article class="metric-card">
+        <span class="metric-icon teal" aria-hidden="true">⌖</span>
+        <span class="metric-label">SUA VIAGEM</span>
+        <strong class="metric-status"><span class="live-dot"></span> Em andamento</strong>
+        <span class="metric-foot">Saída da rota · 07:00</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-icon blue" aria-hidden="true">◷</span>
+        <span class="metric-label">CHEGADA À ESCOLA</span>
+        <strong>07:50 <small>h</small></strong>
+        <span class="metric-foot">Previsão demonstrativa</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-icon amber" aria-hidden="true">▣</span>
+        <span class="metric-label">SEU ASSENTO</span>
+        <strong>{{ studentOnboard ? 'Ocupado' : 'Livre' }}</strong>
+        <span class="metric-foot">Assento 04 · Van escolar</span>
+      </article>
+    </div>
+
+    <div class="dashboard-columns">
+      <article class="dashboard-card journey-card">
+        <div class="card-heading">
+          <div>
+            <span class="card-eyebrow">SEU CAMINHO</span>
+            <h2>De casa até a escola</h2>
+          </div>
+          <span class="student-trip-badge">ROTA DA MANHÃ</span>
+        </div>
+        <div class="route-visual">
+          <div class="visual-route-line"><span class="route-progress"></span></div>
+          <span class="route-pin home-pin">⌂</span><span class="route-pin bus-pin">▰</span
+          ><span class="route-pin school-pin">✓</span>
+          <span class="visual-label start-label">Embarque</span
+          ><span class="visual-label end-label">Escola Horizonte</span>
+          <span class="map-demo-caption">ILUSTRAÇÃO DA ROTA</span>
+        </div>
+        <div class="journey-meta">
+          <span><i class="meta-dot"></i> Saída às 07:00</span
+          ><span><i class="meta-dot destination"></i> Chegada prevista às 07:50</span>
+        </div>
+      </article>
+
+      <article class="dashboard-card student-tip">
+        <span class="card-eyebrow">DICA DO DIA</span>
+        <span class="tip-sun" aria-hidden="true">☀</span>
+        <h2>Pronto para embarcar?</h2>
+        <p>Confira sua mochila e aguarde no ponto combinado com sua família.</p>
+        <span class="tip-bottom"
+          >Um bom dia começa com segurança <span aria-hidden="true">♡</span></span
+        >
+      </article>
+    </div>
+
+    <article class="dashboard-card seat-card">
+      <div class="card-heading">
+        <div>
+          <span class="card-eyebrow">CONFIRMAÇÃO DA VIAGEM</span>
+          <h2>Seu lugar no transporte</h2>
+        </div>
+        <span class="occupancy-state"><span></span>{{ studentOnboard ? 'A bordo' : 'Livre' }}</span>
+      </div>
+      <div class="seat-content">
+        <span class="seat-illustration">▣</span
+        ><span
+          ><strong>Assento 04 · Mariana Costa</strong
+          ><small>{{
+            studentOnboard
+              ? 'Seu embarque está confirmado nesta demonstração.'
+              : 'Seu assento está livre nesta demonstração.'
+          }}</small></span
+        ><span class="seat-date">Rota da manhã</span>
+      </div>
+    </article>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'rota'">
+    <article class="dashboard-card student-route-page">
+      <span class="card-eyebrow">ROTA ESCOLAR · MANHÃ</span>
+      <h2>Seu caminho de hoje</h2>
+      <p class="route-intro">Acompanhe as etapas da viagem. Os horários são apenas exemplos.</p>
+      <div class="student-timeline">
+        <div class="timeline-stop complete">
+          <span>✓</span>
+          <div><strong>Van saiu para a rota</strong><small>Início da viagem · 07:00</small></div>
+        </div>
+        <div class="timeline-stop complete">
+          <span>✓</span>
+          <div>
+            <strong>Embarque no ponto combinado</strong><small>Rua das Acácias · 07:10</small>
+          </div>
+        </div>
+        <div class="timeline-stop current">
+          <span>▰</span>
+          <div>
+            <strong>Transporte em direção à escola</strong
+            ><small>Viagem em andamento · demonstração</small>
+          </div>
+        </div>
+        <div class="timeline-stop">
+          <span>4</span>
+          <div>
+            <strong>Chegada à Escola Horizonte</strong><small>Previsão ilustrativa · 07:50</small>
+          </div>
+        </div>
+      </div>
+    </article>
+  </ng-container>
+
+  <ng-container *ngIf="activeTab === 'avisos'">
+    <article class="dashboard-card student-notice">
+      <span class="notice-sticker" aria-hidden="true">✦</span
+      ><span class="card-eyebrow">AVISO DA VIAGEM</span>
+      <h2>Você está a caminho!</h2>
+      <p>
+        O transporte iniciou a rota da manhã. Lembre-se de seguir as orientações da sua família e do
+        motorista.
+      </p>
+      <span class="notice-time">Hoje · 07:10 · Aviso demonstrativo</span>
+    </article>
+  </ng-container>
+</app-dashboard-layout>

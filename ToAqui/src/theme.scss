@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: light;
+  --app-background: #edf3f7;
+  --app-surface: rgba(255, 255, 255, 0.82);
+  --app-surface-strong: #ffffff;
+  --app-card: rgba(255, 255, 255, 0.9);
+  --app-text: #1a2d3a;
+  --app-muted: #5f7282;
+  --app-border: rgba(23, 41, 56, 0.14);
+  --app-accent: #1d8d8a;
+  --app-accent-strong: #0f6f69;
+  --app-accent-soft: rgba(22, 143, 132, 0.12);
+  --app-success: #1e9a77;
+  --app-glow: rgba(32, 174, 154, 0.2);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(38, 183, 166, 0.14), transparent 28%),
+    linear-gradient(180deg, #edf5f6 0%, #e9eef4 100%);
+  color: var(--app-text);
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(48, 160, 148, 0.9);
+  outline-offset: 3px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid var(--app-border);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(232, 245, 242, 0.8));
+  color: var(--app-text);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  box-shadow: 0 10px 20px rgba(16, 27, 34, 0.06);
+}
+
+.theme-toggle:hover {
+  border-color: rgba(28, 120, 112, 0.24);
+  box-shadow: 0 14px 22px rgba(16, 27, 34, 0.08);
+  transform: translateY(-1px);
+}
+
+.theme-toggle > span:first-child {
+  color: #177d72;
+  font-size: 16px;
+  line-height: 1;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --app-background: #0a1217;
+  --app-surface: rgba(15, 23, 30, 0.9);
+  --app-surface-strong: #131e28;
+  --app-card: rgba(18, 27, 34, 0.94);
+  --app-text: #dfe9ef;
+  --app-muted: #9caebd;
+  --app-border: rgba(116, 146, 164, 0.2);
+  --app-accent: #84e2cb;
+  --app-accent-strong: #9ae8d5;
+  --app-accent-soft: rgba(128, 226, 204, 0.12);
+  --app-success: #7de2b0;
+  --app-glow: rgba(124, 224, 205, 0.14);
+}
+
+html[data-theme='dark'] body {
+  background:
+    radial-gradient(circle at top left, rgba(126, 224, 202, 0.08), transparent 30%),
+    linear-gradient(180deg, #0b141a 0%, #0a1117 100%);
+  color: var(--app-text);
+}
+
+html[data-theme='dark'] .login-page,
+html[data-theme='dark'] .form-panel {
+  background: linear-gradient(145deg, #0d171e 0%, #101c24 58%, #0c151c 100%);
+  color: var(--app-text);
+}
+
+html[data-theme='dark'] .welcome-panel {
+  background:
+    radial-gradient(circle at 80% 12%, rgba(94, 164, 158, 0.12), transparent 30%),
+    linear-gradient(150deg, #101b22 0%, #12242c 52%, #102b31 100%);
+}
+
+html[data-theme='dark'] .login-content,
+html[data-theme='dark'] .login-topline,
+html[data-theme='dark'] .form-footer,
+html[data-theme='dark'] .form-heading h2,
+html[data-theme='dark'] .profile-field legend,
+html[data-theme='dark'] .input-label,
+html[data-theme='dark'] .mobile-brand {
+  color: #d8e4e9;
+}
+
+html[data-theme='dark'] .form-eyebrow,
+html[data-theme='dark'] .text-link,
+html[data-theme='dark'] .brand-period,
+html[data-theme='dark'] .theme-toggle > span:first-child,
+html[data-theme='dark'] .privacy-note svg {
+  color: #83d8c4;
+  stroke: #83d8c4;
+}
+
+html[data-theme='dark'] .profile-option,
+html[data-theme='dark'] .input-wrap,
+html[data-theme='dark'] .custom-checkbox,
+html[data-theme='dark'] .demo-credentials {
+  border-color: rgba(112, 143, 160, 0.28);
+  background: #15222b;
+  color: #c8d7df;
+}
+
+html[data-theme='dark'] .profile-option:has(input:checked) {
+  border-color: rgba(120, 211, 190, 0.48);
+  background: #1a3437;
+  color: #c7f3e8;
+}
+
+html[data-theme='dark'] .profile-icon {
+  background: #1e3039;
+}
+
+html[data-theme='dark'] .profile-option:has(input:checked) .profile-icon {
+  background: #25443f;
+}
+
+html[data-theme='dark'] .input-wrap input {
+  color: #dbe6ec;
+}
+
+html[data-theme='dark'] .input-wrap input::placeholder {
+  color: #8196a4;
+}
+
+html[data-theme='dark'] .input-icon,
+html[data-theme='dark'] .password-toggle {
+  color: #8da5b3;
+  stroke: #8da5b3;
+}
+
+html[data-theme='dark'] .demo-credentials strong,
+html[data-theme='dark'] .demo-credentials b {
+  color: #d1e8e1;
+}
+
+html[data-theme='dark'] .login-message {
+  border-color: rgba(196, 154, 88, 0.3);
+  background: #2b261c;
+  color: #dbc89f;
+}
+
+html[data-theme='dark'] .route-card {
+  border-color: rgba(115, 158, 168, 0.24);
+  background: rgba(13, 24, 30, 0.72);
+}
+
+html[data-theme='dark'] .theme-toggle {
+  border-color: rgba(132, 163, 176, 0.2);
+  background: linear-gradient(135deg, rgba(18, 27, 35, 0.92), rgba(12, 20, 27, 0.96));
+  color: #dfeaf2;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme='dark'] .dashboard-shell {
+  background: linear-gradient(180deg, rgba(11, 17, 22, 0.96), rgba(9, 14, 19, 0.98));
+}
+
+html[data-theme='dark'] .dashboard-sidebar,
+html[data-theme='dark'] .dashboard-topbar,
+html[data-theme='dark'] .metric-card,
+html[data-theme='dark'] .dashboard-card,
+html[data-theme='dark'] .route-visual,
+html[data-theme='dark'] .demo-banner,
+html[data-theme='dark'] .dashboard-heading {
+  border-color: rgba(112, 139, 158, 0.22);
+  background: linear-gradient(180deg, rgba(18, 26, 33, 0.96), rgba(13, 19, 25, 0.96));
+}
+
+html[data-theme='dark'] .dashboard-brand,
+html[data-theme='dark'] .dashboard-shell :where(h1, h2, h3, strong),
+html[data-theme='dark'] .route-card-heading strong,
+html[data-theme='dark'] .topbar-user strong,
+html[data-theme='dark'] .metric-card > strong,
+html[data-theme='dark'] .card-heading h2 {
+  color: #ebf2f6;
+}
+
+html[data-theme='dark'] .dashboard-heading p,
+html[data-theme='dark'] .breadcrumb,
+html[data-theme='dark'] .topbar-user small,
+html[data-theme='dark'] .metric-label,
+html[data-theme='dark'] .metric-foot,
+html[data-theme='dark'] .demo-banner,
+html[data-theme='dark'] .dashboard-shell :where(p, small, time, .breadcrumb),
+html[data-theme='dark'] .route-status,
+html[data-theme='dark'] .welcome-copy p,
+html[data-theme='dark'] .form-heading p,
+html[data-theme='dark'] .signup-prompt,
+html[data-theme='dark'] .privacy-note {
+  color: #a7bac7;
+}
+
+html[data-theme='dark'] .dashboard-nav button,
+html[data-theme='dark'] .logout-button {
+  color: #dce7ee;
+}
+
+html[data-theme='dark'] .dashboard-nav button:hover,
+html[data-theme='dark'] .logout-button:hover {
+  background: linear-gradient(180deg, rgba(30, 53, 48, 0.96), rgba(16, 32, 36, 0.96));
+  border-color: rgba(133, 217, 198, 0.24);
+  color: #d7fff7;
+}
+
+html[data-theme='dark'] .dashboard-nav button.active {
+  background: linear-gradient(180deg, rgba(29, 60, 55, 0.96), rgba(16, 42, 40, 0.96));
+  border-color: rgba(145, 220, 201, 0.3);
+  color: #ebfffb;
+}
+
+html[data-theme='dark'] .demo-side-note,
+html[data-theme='dark'] .nav-count,
+html[data-theme='dark'] .demo-badge {
+  border-color: rgba(133, 166, 183, 0.18);
+  background: rgba(21, 31, 38, 0.96);
+  color: #d5e5ef;
+}
+
+html[data-theme='dark'] .brand-mark {
+  background: linear-gradient(135deg, #7fe7d7, #36a49d);
+}
+
+html[data-theme='dark'] .brand-mark svg {
+  filter: drop-shadow(0 4px 8px rgba(10, 32, 28, 0.28));
+}
+
+html[data-theme='dark'] .student-welcome,
+html[data-theme='dark'] .family-welcome,
+html[data-theme='dark'] .driver-welcome,
+html[data-theme='dark'] .student-tip,
+html[data-theme='dark'] .student-notice,
+html[data-theme='dark'] .family-reassurance,
+html[data-theme='dark'] .family-driver,
+html[data-theme='dark'] .driver-next-stop {
+  border-color: rgba(106, 137, 153, 0.22);
+  background: linear-gradient(140deg, #17252e, #121e26);
+}
+
+html[data-theme='dark'] .student-welcome :where(strong, p),
+html[data-theme='dark'] .family-welcome :where(strong, p),
+html[data-theme='dark'] .driver-welcome :where(strong, p),
+html[data-theme='dark'] .student-tip :where(h2, p),
+html[data-theme='dark'] .student-notice :where(h2, p),
+html[data-theme='dark'] .family-reassurance :where(h2, p),
+html[data-theme='dark'] .family-driver :where(h2, strong, small),
+html[data-theme='dark'] .driver-next-stop :where(h2, strong, small) {
+  color: #d6e3e9;
+}
+
+html[data-theme='dark'] .route-visual {
+  background:
+    linear-gradient(25deg, transparent 48%, rgba(112, 153, 158, 0.14) 49%, rgba(112, 153, 158, 0.14) 50%, transparent 51%),
+    linear-gradient(148deg, transparent 47%, rgba(112, 153, 158, 0.14) 48%, rgba(112, 153, 158, 0.14) 49%, transparent 50%),
+    linear-gradient(180deg, #17252d, #142029);
+}
+
+html[data-theme='dark'] .visual-label,
+html[data-theme='dark'] .journey-meta,
+html[data-theme='dark'] .route-intro,
+html[data-theme='dark'] .timeline-stop small,
+html[data-theme='dark'] .parent-stop small,
+html[data-theme='dark'] .driver-student small,
+html[data-theme='dark'] .driver-mini-stops small,
+html[data-theme='dark'] .driver-notice small,
+html[data-theme='dark'] .parent-notice small {
+  color: #9eb1bc;
+}
+
+html[data-theme='dark'] .timeline-stop > span,
+html[data-theme='dark'] .parent-stop > span,
+html[data-theme='dark'] .driver-mini-stops > div,
+html[data-theme='dark'] .parent-notice > span,
+html[data-theme='dark'] .notice-check {
+  border-color: rgba(109, 142, 157, 0.24);
+  background: #1a2a33;
+  color: #a9dace;
+}
+
+html[data-theme='dark'] .timeline-stop.complete > span,
+html[data-theme='dark'] .timeline-stop.current > span,
+html[data-theme='dark'] .parent-stop.done > span,
+html[data-theme='dark'] .parent-stop.next > span {
+  border-color: rgba(123, 210, 187, 0.34);
+  background: #1b3938;
+  color: #a4e5d1;
+}
+
+html[data-theme='dark'] .stop-row,
+html[data-theme='dark'] .parent-notice,
+html[data-theme='dark'] .driver-notice,
+html[data-theme='dark'] .driver-next-footer,
+html[data-theme='dark'] .family-divider,
+html[data-theme='dark'] .family-link,
+html[data-theme='dark'] .stop-divider {
+  border-color: rgba(104, 134, 150, 0.2);
+}
+
+html[data-theme='dark'] .stop-action,
+html[data-theme='dark'] .next-stop-footer button,
+html[data-theme='dark'] .family-link,
+html[data-theme='dark'] .driver-primary-link {
+  border-color: rgba(114, 161, 159, 0.24);
+  background: #182b31;
+  color: #a8e7d6;
+}
+
+html[data-theme='dark'] .dashboard-footer {
+  color: #8195a1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

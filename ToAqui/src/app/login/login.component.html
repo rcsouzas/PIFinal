@@ -1,0 +1,218 @@
+<main class="login-page">
+  <section class="welcome-panel" aria-label="Sobre o ToAqui">
+    <a class="brand" routerLink="/" aria-label="ToAqui, página inicial">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M7 18a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5v14H7V18Z" fill="#102732" />
+          <rect x="11" y="17" width="26" height="11" rx="3" fill="#e7f7f3" />
+          <path d="m15 23 2.2 2.2 4.2-4.4m2.4 2.2L26 25.2l4.2-4.4" fill="none" stroke="#167d72" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" />
+          <path d="M10 32h28" stroke="#102732" stroke-linecap="round" stroke-width="3" />
+          <circle cx="14" cy="33" r="3" fill="#102732" />
+          <circle cx="34" cy="33" r="3" fill="#102732" />
+          <path d="M31 6.5a6 6 0 0 1 12 0c0 4.2-6 10-6 10s-6-5.8-6-10Z" fill="#e7f7f3" stroke="#102732" stroke-linejoin="round" stroke-width="1.6" />
+          <circle cx="37" cy="6.5" r="1.8" fill="#167d72" />
+        </svg>
+      </span>
+      <span>ToAqui<span class="brand-period">.</span></span>
+    </a>
+
+    <div class="welcome-copy">
+      <span class="eyebrow"><span class="live-dot"></span> Cuidado em cada trajeto</span>
+      <h1>O caminho fica mais tranquilo quando você acompanha.</h1>
+      <p>
+        Acompanhe cada etapa do transporte escolar com mais segurança, cuidado e tranquilidade para
+        toda a família.
+      </p>
+    </div>
+
+    <div class="route-card" aria-label="Exemplo de rota escolar">
+      <div class="route-card-heading">
+        <div>
+          <span class="route-label">ROTA ESCOLAR</span>
+          <strong>Bom dia, família!</strong>
+        </div>
+        <span class="route-status"><span class="live-dot"></span> Em andamento</span>
+      </div>
+      <div class="route-map" aria-hidden="true">
+        <svg viewBox="0 0 430 142" preserveAspectRatio="none">
+          <path class="map-road" d="M-10 105c58-8 53-63 116-58s77 61 135 44 80-65 199-57" />
+          <path class="map-route" d="M-10 105c58-8 53-63 116-58s77 61 135 44 80-65 199-57" />
+          <circle class="map-stop" cx="106" cy="47" r="7" />
+          <circle class="map-stop" cx="242" cy="91" r="7" />
+          <circle class="map-destination" cx="360" cy="43" r="11" />
+          <circle class="map-destination-center" cx="360" cy="43" r="4" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-panel" aria-labelledby="login-title">
+    <div class="login-topline">
+      <div class="mobile-brand brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M7 18a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5v14H7V18Z" fill="#102732" />
+            <rect x="11" y="17" width="26" height="11" rx="3" fill="#e7f7f3" />
+            <path d="m15 23 2.2 2.2 4.2-4.4m2.4 2.2 2.2 2.2 4.2-4.4" fill="none" stroke="#167d72" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" />
+            <path d="M10 32h28" stroke="#102732" stroke-linecap="round" stroke-width="3" />
+            <circle cx="14" cy="33" r="3" fill="#102732" />
+            <circle cx="34" cy="33" r="3" fill="#102732" />
+            <path d="M31 6.5a6 6 0 0 1 12 0c0 4.2-6 10-6 10s-6-5.8-6-10Z" fill="#e7f7f3" stroke="#102732" stroke-linejoin="round" stroke-width="1.6" />
+            <circle cx="37" cy="6.5" r="1.8" fill="#167d72" />
+          </svg>
+        </span>
+        <span>ToAqui<span class="brand-period">.</span></span>
+      </div>
+      <button
+        class="theme-toggle"
+        type="button"
+        [attr.aria-label]="theme.isDark() ? 'Ativar modo claro' : 'Ativar modo escuro'"
+        [attr.aria-pressed]="theme.isDark()"
+        (click)="toggleTheme()"
+      >
+        <span aria-hidden="true">{{ theme.isDark() ? '☀' : '☾' }}</span>
+        <span>{{ theme.isDark() ? 'Modo claro' : 'Modo escuro' }}</span>
+      </button>
+    </div>
+
+    <div class="login-content">
+      <div class="form-heading">
+        <span class="form-eyebrow">ACESSO DE DEMONSTRAÇÃO</span>
+        <h2 id="login-title">Entre na sua conta</h2>
+        <p>Acesse sua área para acompanhar o transporte escolar.</p>
+      </div>
+
+      <form class="login-form" (ngSubmit)="onLogin()">
+        <fieldset class="profile-field">
+          <legend>Como você utiliza o ToAqui?</legend>
+          <div class="profile-options">
+            <label class="profile-option">
+              <input type="radio" name="profile" value="responsavel" [(ngModel)]="profile" />
+              <span class="profile-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="9" cy="8" r="3" />
+                  <path d="M3.5 19v-1.3a5.5 5.5 0 0 1 11 0V19h-11Z" />
+                  <path d="M16 5.5a3 3 0 0 1 0 5.8m2 2a5 5 0 0 1 2.5 4.4V19H18" />
+                </svg>
+              </span>
+              <span>Responsável</span>
+            </label>
+            <label class="profile-option">
+              <input type="radio" name="profile" value="motorista" [(ngModel)]="profile" />
+              <span class="profile-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3 7.5h11.5l3 4.1H21v5.2h-2.1M3 7.5v9.3h2.2m0 0a2.1 2.1 0 1 0 4.2 0m-4.2 0h4.2m0 0h5.4m2.1 0a2.1 2.1 0 1 0 4.2 0m-4.2 0h-2.1M14.5 7.5v4.1h3"
+                  />
+                </svg>
+              </span>
+              <span>Motorista</span>
+            </label>
+            <label class="profile-option">
+              <input type="radio" name="profile" value="aluno" [(ngModel)]="profile" />
+              <span class="profile-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="4" width="16" height="16" rx="3" />
+                  <path d="M8 9h8M8 13h3m2 0h3m-8 4h3m2 0h3" />
+                </svg>
+              </span>
+              <span>Aluno</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="input-label" for="username">Usuário</label>
+        <div class="input-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M5 20v-1a7 7 0 0 1 14 0v1H5Z" />
+          </svg>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            [(ngModel)]="username"
+            placeholder="Digite seu usuário"
+            autocomplete="username"
+            required
+          />
+        </div>
+
+        <div class="password-heading">
+          <label class="input-label" for="password">Senha</label>
+          <button class="text-link" type="button" (click)="showHelp()">Esqueceu a senha?</button>
+        </div>
+        <div class="input-wrap">
+          <svg class="input-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="4" y="10" width="16" height="11" rx="2.5" />
+            <path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2" />
+          </svg>
+          <input
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            [type]="showPassword ? 'text' : 'password'"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            required
+          />
+          <button
+            class="password-toggle"
+            type="button"
+            [attr.aria-label]="showPassword ? 'Ocultar senha' : 'Mostrar senha'"
+            [attr.aria-pressed]="showPassword"
+            (click)="showPassword = !showPassword"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z" />
+              <circle cx="12" cy="12" r="2.5" />
+            </svg>
+          </button>
+        </div>
+
+        <label class="remember-option">
+          <input type="checkbox" name="remember" />
+          <span class="custom-checkbox" aria-hidden="true"></span>
+          <span>Manter conectado</span>
+        </label>
+
+        <button class="submit-button" type="submit">
+          Entrar na minha conta <span aria-hidden="true">→</span>
+        </button>
+        <p class="login-message" role="status" aria-live="polite" *ngIf="loginMessage">
+          {{ loginMessage }}
+        </p>
+      </form>
+
+      <div class="demo-credentials">
+        <strong>Contas para testar</strong>
+        <span>
+          <ng-container *ngFor="let account of demoAccounts; let last = last">
+            {{ profileLabel(account.profile) }}: {{ account.username }}<i *ngIf="!last">·</i>
+          </ng-container>
+        </span>
+        <span
+          >Senha para todos: <b>{{ demoAccounts[0].password }}</b></span
+        >
+      </div>
+
+      <div class="signup-prompt">
+        Ainda não tem uma conta?
+        <button class="text-link" type="button" (click)="showHelp()">Fale com a sua escola</button>
+      </div>
+
+      <div class="privacy-note">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3 5 6v5c0 4.7 3 8.3 7 10 4-1.7 7-5.3 7-10V6l-7-3Z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+        <span>Acesso de demonstração · dados de exemplo</span>
+      </div>
+    </div>
+
+    <footer class="form-footer">
+      <span>© 2026 ToAqui</span>
+      <button class="text-link" type="button" (click)="showHelp()">Precisa de ajuda?</button>
+    </footer>
+  </section>
+</main>

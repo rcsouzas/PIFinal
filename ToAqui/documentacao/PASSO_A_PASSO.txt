@@ -1,0 +1,65 @@
+ToAqui — guia de manutenção e customização
+=========================================
+
+Este arquivo centraliza a orientação do projeto. Ele aponta para os textos complementares que explicam como o código foi montado, como customizar o tema e como evoluir a interface sem quebrar a proposta do produto.
+
+Estrutura da documentação
+-------------------------
+
+- 01-visao-geral.txt
+- 02-tema-e-estilo.txt
+- 03-componentes-e-logo.txt
+- 04-manutencao-e-codificacao.txt
+
+Como ler a documentação
+------------------------
+1. Comece por 01-visao-geral.txt para entender o objetivo da aplicação.
+2. Siga para 02-tema-e-estilo.txt para entender as cores, elos visuais e o dark mode.
+3. Leia 03-componentes-e-logo.txt para estudar a marca, o SVG do ônibus e o comportamento visual.
+4. Consulte 04-manutencao-e-codificacao.txt para saber como alterar estilos e componentes com exemplos reais.
+
+Atalhos para desenvolvimento
+----------------------------
+- Tema global: src/theme.scss
+- Tela de login: src/app/login/login.component.scss
+- Dashboard: src/app/dashboard/dashboard-layout.scss
+- Brand: os elementos com class="brand-mark" em src/app/login/login.component.html e src/app/dashboard/dashboard-layout.component.html
+
+Fluxo para manter o projeto
+---------------------------
+1. Ajuste variáveis globais em src/theme.scss.
+2. Altere o comportamento visual em cada componente SCSS ou no layout compartilhado.
+3. Teste com npm run build.
+4. Repetir o processo em pequenos ciclos para evitar regressões.
+
+Exemplo de manutenção de tema
+-----------------------------
+Se quiser alterar a cor principal da interface, basta trocar os valores nas variáveis do tema:
+
+  :root {
+    --app-accent: #1d8d8a;
+    --app-accent-strong: #0f6f69;
+  }
+
+Se quiser deixar o dark mode mais forte, altere os valores de:
+
+  html[data-theme='dark'] {
+    --app-background: #0a1217;
+    --app-border: rgba(116, 146, 164, 0.2);
+  }
+
+Exemplo de ajuste em um botão
+----------------------------
+No arquivo de layout do dashboard, o botão segue esta lógica:
+
+  .logout-button {
+    background: linear-gradient(...);
+    border: 1px solid ...;
+    border-radius: 12px;
+  }
+
+Isso garante que o botão tenha foco visual, contraste e harmonia com a identidade geral.
+
+Resumo
+------
+O projeto usa uma abordagem simples e legível: o tema global define as cores; os componentes usam classes específicas; o SVG da logo funciona como um elemento visual de marca; e o CSS permanece organizado por responsabilidade.
