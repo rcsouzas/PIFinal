@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './cadastro/signup.component';
 import { DriverDashboardComponent } from './motorista/driver-dashboard.component';
 import { ParentDashboardComponent } from './responsavel/parent-dashboard.component';
 import { StudentDashboardComponent } from './aluno/student-dashboard.component';
@@ -8,6 +9,7 @@ import { profileGuard } from './auth/profile.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'cadastro', component: SignupComponent },
   {
     path: 'aluno',
     component: StudentDashboardComponent,

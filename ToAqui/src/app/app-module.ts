@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { StudentDashboardComponent } from './aluno/student-dashboard.component';
 import { DashboardLayoutComponent } from './dashboard/dashboard-layout.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './cadastro/signup.component';
 import { DriverDashboardComponent } from './motorista/driver-dashboard.component';
 import { ParentDashboardComponent } from './responsavel/parent-dashboard.component';
 
@@ -13,6 +14,7 @@ import { ParentDashboardComponent } from './responsavel/parent-dashboard.compone
   declarations: [
     App,
     LoginComponent,
+    SignupComponent,
     DashboardLayoutComponent,
     StudentDashboardComponent,
     ParentDashboardComponent,

@@ -1,0 +1,113 @@
+<main class="signup-page">
+  <section class="signup-aside" aria-label="Sobre o ToAqui">
+    <a class="brand" routerLink="/" aria-label="ToAqui, página inicial">
+      <span class="brand-mark" aria-hidden="true">T</span>
+      <span>ToAqui<span class="brand-period">.</span></span>
+    </a>
+    <div class="aside-copy">
+      <span class="eyebrow"><span class="live-dot"></span> Cuidado em cada trajeto</span>
+      <h1>Mais tranquilidade para acompanhar quem você ama.</h1>
+      <p>Crie sua conta e acompanhe o transporte escolar em um só lugar.</p>
+    </div>
+    <div class="aside-note">
+      <span class="note-icon" aria-hidden="true">✓</span>
+      <span><strong>Simples para começar</strong><small>Seu cadastro fica disponível nesta sessão.</small></span>
+    </div>
+  </section>
+
+  <section class="signup-panel" aria-labelledby="signup-title">
+    <header class="topline">
+      <a class="mobile-brand brand" routerLink="/" aria-label="ToAqui, página inicial">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>ToAqui<span class="brand-period">.</span></span>
+      </a>
+      <button
+        class="theme-toggle"
+        type="button"
+        [attr.aria-label]="theme.isDark() ? 'Ativar modo claro' : 'Ativar modo escuro'"
+        [attr.aria-pressed]="theme.isDark()"
+        (click)="toggleTheme()"
+      >
+        <span aria-hidden="true">{{ theme.isDark() ? '☀' : '☾' }}</span>
+        <span>{{ theme.isDark() ? 'Modo claro' : 'Modo escuro' }}</span>
+      </button>
+    </header>
+
+    <div class="signup-content">
+      <div class="form-heading">
+        <span class="form-eyebrow">COMECE POR AQUI</span>
+        <h2 id="signup-title">Crie sua conta</h2>
+        <p>Preencha seus dados para acessar sua área do ToAqui.</p>
+      </div>
+
+      <form class="signup-form" (ngSubmit)="onSignup()">
+        <label class="input-label" for="name">Nome completo</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          [(ngModel)]="name"
+          placeholder="Como podemos chamar você?"
+          autocomplete="name"
+          required
+          minlength="2"
+        />
+
+        <label class="input-label" for="email">E-mail</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          [(ngModel)]="email"
+          placeholder="voce@exemplo.com"
+          autocomplete="email"
+          required
+        />
+
+        <label class="input-label" for="profile">Como você utiliza o ToAqui?</label>
+        <select id="profile" name="profile" [(ngModel)]="profile" required>
+          <option value="responsavel">Responsável</option>
+          <option value="aluno">Aluno</option>
+          <option value="motorista">Motorista</option>
+        </select>
+
+        <label class="input-label" for="password">Senha</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+          placeholder="Mínimo de 8 caracteres"
+          autocomplete="new-password"
+          required
+          minlength="8"
+        />
+
+        <label class="input-label" for="confirm-password">Confirme sua senha</label>
+        <input
+          id="confirm-password"
+          name="confirmPassword"
+          type="password"
+          [(ngModel)]="confirmPassword"
+          placeholder="Digite a senha novamente"
+          autocomplete="new-password"
+          required
+          minlength="8"
+        />
+
+        <p class="signup-message" role="alert" *ngIf="message">{{ message }}</p>
+
+        <button class="submit-button" type="submit">Criar minha conta <span aria-hidden="true">→</span></button>
+      </form>
+
+      <p class="login-prompt">
+        Já tem uma conta? <a class="text-link" routerLink="/">Entrar</a>
+      </p>
+      <p class="demo-note">
+        Protótipo de demonstração: as contas criadas ficam ativas somente enquanto esta sessão estiver aberta.
+      </p>
+    </div>
+
+    <footer class="form-footer"><span>© 2026 ToAqui</span><span>Protótipo de demonstração</span></footer>
+  </section>
+</main>

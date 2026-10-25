@@ -31,5 +31,23 @@ describe('AuthService', () => {
 
     expect(auth.profile).toBeNull();
     expect(auth.username).toBe('');
+    expect(auth.displayName).toBe('');
+  });
+
+  it('registers an account and allows it to log in', () => {
+    expect(auth.register('responsavel', 'Ana Souza', 'ana@example.com', 'senha-segura')).toBe(
+      true,
+    );
+    expect(auth.profile).toBe('responsavel');
+    expect(auth.displayName).toBe('Ana Souza');
+
+    auth.logout();
+    expect(auth.login('responsavel', 'ANA@example.com', 'senha-segura')).toBe(true);
+    expect(auth.displayName).toBe('Ana Souza');
+  });
+
+  it('rejects duplicate usernames regardless of case', () => {
+    expect(auth.register('aluno', 'Ana Souza', 'ana@example.com', 'senha-segura')).toBe(true);
+    expect(auth.register('aluno', 'Outra Ana', 'ANA@example.com', 'outra-senha')).toBe(false);
   });
 });

@@ -33,7 +33,7 @@ export class DashboardLayoutComponent {
   }
 
   get username(): string {
-    return this.auth.username;
+    return this.auth.displayName || this.auth.username;
   }
 
   get todayLabel(): string {

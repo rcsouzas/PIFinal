@@ -93,6 +93,10 @@ lembrete de proximidade e QR Code de embarque. O QR contém apenas um identifica
 de demonstração e não confirma presença. As alterações de ausência e os
 lembretes ficam somente no estado local da tela.
 
+A tela de cadastro cria contas apenas em memória para demonstrar o fluxo de
+acesso ao painel. Essas contas deixam de existir ao recarregar a aplicação e
+não representam autenticação ou armazenamento seguro de credenciais.
+
 O projeto ainda não conecta esses controles a uma API, a uma rota real, a
 notificações do sistema, a uma câmera/leitor de QR ou a um serviço de localização.
 Também não implementa autenticação de embarque, biometria, sincronização entre
