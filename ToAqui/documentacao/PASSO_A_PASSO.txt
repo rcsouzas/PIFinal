@@ -10,6 +10,7 @@ Estrutura da documentação
 - 02-tema-e-estilo.txt
 - 03-componentes-e-logo.txt
 - 04-manutencao-e-codificacao.txt
+- APRESENTACAO_PROJETO.txt
 
 Como ler a documentação
 ------------------------
@@ -17,6 +18,7 @@ Como ler a documentação
 2. Siga para 02-tema-e-estilo.txt para entender as cores, elos visuais e o dark mode.
 3. Leia 03-componentes-e-logo.txt para estudar a marca, o SVG do ônibus e o comportamento visual.
 4. Consulte 04-manutencao-e-codificacao.txt para saber como alterar estilos e componentes com exemplos reais.
+5. Para apresentar a proposta, consulte APRESENTACAO_PROJETO.txt; o roteiro distingue o protótipo atual das funcionalidades futuras.
 
 Atalhos para desenvolvimento
 ----------------------------
