@@ -1,0 +1,218 @@
+TOAQUI — APRESENTAÇÃO DO PROJETO
+Roteiro de apresentação, demonstração e perguntas e respostas
+
+DURAÇÃO SUGERIDA: 8 a 12 minutos, incluindo a demonstração
+PÚBLICO: comunidade escolar, operadores de transporte, famílias e avaliadores
+
+COMO USAR ESTE DOCUMENTO
+Este roteiro apresenta a visão do produto e, ao mesmo tempo, distingue essa visão do protótipo disponível hoje. Os textos em “Fala sugerida” podem ser adaptados à voz de quem apresenta. A demonstração deve ser feita no ambiente de desenvolvimento, com dados fictícios. Não apresentar telas, horários, endereços, alertas ou estados de embarque como informações de uma viagem real.
+
+1. ABERTURA — UMA VIAGEM QUE POSSA SER ACOMPANHADA
+
+Fala sugerida:
+“Bom dia. Pensem em uma manhã comum: a família precisa saber se o transporte escolar já passou; o motorista precisa manter a sequência das paradas; e o aluno quer saber o que esperar. Quando cada pessoa depende de uma informação diferente, ou de mensagens que podem chegar tarde, a rotina fica menos previsível. O ToAqui parte de uma pergunta simples: como tornar o transporte escolar mais transparente para todos os envolvidos?”
+
+Ideia central:
+O ToAqui é uma proposta de plataforma digital para organizar o acompanhamento do transporte escolar em uma experiência comum a alunos, responsáveis e motoristas.
+
+2. O PROBLEMA — INFORMAÇÃO ESPALHADA, ROTINA INCERTA
+
+Fala sugerida:
+“O desafio não é apenas saber onde está um veículo. É coordenar uma viagem com várias pessoas, paradas e momentos importantes. Uma família quer saber se o aluno embarcou. O motorista precisa enxergar as próximas paradas e quem está a bordo. O aluno precisa se preparar para a chegada. Sem um fluxo claro de informação, dúvidas simples podem virar ligações, mensagens e espera.”
+
+Pontos observados no problema:
+- Pouca visibilidade sobre o andamento da viagem.
+- Dificuldade de confirmar embarques e desembarques.
+- Comunicação descentralizada entre famílias, motoristas e operação.
+- Mudanças de rotina, como uma ausência, podem afetar a organização das paradas.
+- Falta de um histórico organizado para compreender ocorrências e melhorar o serviço.
+
+Não afirmar que todos esses problemas acontecem em todas as operações. São dores que a proposta busca investigar e atender.
+
+3. A PROPOSTA — TRÊS PERSPECTIVAS, UMA JORNADA
+
+Fala sugerida:
+“O ToAqui organiza a experiência em torno da mesma viagem, mas respeita o que cada pessoa precisa fazer. A família consulta o acompanhamento e o estado do aluno. O motorista consulta a rota e registra movimentos. O aluno acompanha a própria jornada, pode avisar uma ausência e vê como funcionaria uma confirmação de embarque. A ideia é reduzir a distância entre o que acontece na rota e o que cada pessoa precisa saber.”
+
+Proposta de valor por perfil:
+- Responsáveis: mais clareza sobre a viagem, o assento associado ao aluno e os avisos relevantes.
+- Motoristas: uma visão direta das paradas e dos registros de embarque e saída.
+- Alunos: previsibilidade sobre a jornada e uma forma simples de se preparar para o transporte.
+- Operadores: uma base para padronizar processos e, em uma versão integrada, consultar históricos e ocorrências.
+
+4. COMO SERIA A EXPERIÊNCIA
+
+Fala sugerida:
+“Uma viagem real poderia começar com uma rota e um motorista vinculados àquela sessão. O motorista consultaria as paradas previstas. A cada embarque ou desembarque, o evento seria registrado e compartilhado com os perfis autorizados. Se uma família avisasse que o aluno não usaria o transporte, a operação poderia ajustar a parada daquele dia. Durante o percurso, atualizações de localização e previsão ajudariam cada pessoa a entender o que está acontecendo.”
+
+Jornada conceitual:
+1. A operação prepara a sessão da viagem, a rota, o veículo e as paradas.
+2. O motorista acessa a rota correspondente à sessão.
+3. O aluno embarca e o evento é confirmado por um método definido pela operação.
+4. A confirmação atualiza a ocupação e pode gerar um aviso para o responsável.
+5. A rota e as previsões são atualizadas conforme os dados reais disponíveis.
+6. Ocorrências e eventos ficam registrados para consulta e análise, de acordo com regras de acesso e retenção.
+
+Esta é a visão de funcionamento do produto. A versão atual não implementa essa jornada integrada.
+
+5. O PROTÓTIPO ATUAL — UMA FORMA DE TORNAR A IDEIA CONCRETA
+
+Fala sugerida:
+“Para avaliar a proposta, já existe um protótipo navegável. Ele permite explorar três painéis e entender como a informação poderia ser apresentada. O objetivo desta versão é demonstrar a experiência e alguns comportamentos de interface, não operar um transporte escolar real.”
+
+O que é possível demonstrar hoje:
+- Acesso demonstrativo e painéis separados para aluno, responsável e motorista.
+- Navegação entre visão geral, viagem ou rota e avisos.
+- Alternância entre tema claro e escuro, com preferência salva no navegador.
+- No painel do aluno, alternância de um aviso de ausência e de um lembrete de proximidade, apenas na tela atual.
+- Exibição de um QR Code ilustrativo, sem leitura ou confirmação de embarque.
+- No painel do motorista, registro demonstrativo de embarque e saída, com atualização do estado da parada e da contagem na sessão aberta.
+- No painel do responsável, visualização ilustrativa de status, assento, rota e avisos.
+
+Limites que devem ser explicados durante a demonstração:
+- Os nomes, horários, endereços, previsões e trajetos são exemplos fictícios.
+- O mapa é uma ilustração; não há localização por GPS nem rastreamento em tempo real.
+- Não existe serviço de notificações conectado aos celulares.
+- O QR Code contém um identificador de demonstração e não valida uma viagem.
+- As alterações de ausência e os registros do motorista não são persistidos nem sincronizados entre perfis.
+- O cadastro e as contas de demonstração são mantidos em memória; não há autenticação de produção, API ou banco de dados.
+- A interface não deve ser utilizada para orientar uma viagem real.
+
+6. UMA DEMONSTRAÇÃO CURTA E CLARA
+
+Preparação:
+- Iniciar a aplicação localmente e abrir a tela de entrada.
+- Usar uma conta de demonstração disponível no próprio ambiente; não projetar credenciais em materiais públicos.
+- Avisar antes de começar: “Os dados desta tela são fictícios e servem para demonstrar a navegação.”
+
+Sequência sugerida:
+1. Mostrar que há três perfis e explicar rapidamente a necessidade de visões diferentes.
+2. Abrir o painel do responsável. Apontar status, previsão, assento, rota ilustrada e avisos. Reforçar que não são dados reais.
+3. Abrir o painel do aluno. Mostrar o aviso de ausência, o lembrete e o QR Code; dizer explicitamente que são interações demonstrativas.
+4. Abrir o painel do motorista. Entrar em “Minha rota”, registrar um embarque e depois uma saída. Mostrar a mudança de estado e o histórico gerado naquela sessão.
+5. Alternar o tema claro/escuro e encerrar relacionando as telas à jornada proposta.
+
+Evitar gastar tempo lendo cada cartão. O foco da demonstração é mostrar como os três perfis se conectariam em um produto integrado.
+
+7. O QUE TORNA A IDEIA ÚTIL
+
+Fala sugerida:
+“O valor do ToAqui está em organizar a comunicação em torno da viagem, em vez de tratar cada dúvida como um contato isolado. Quando uma informação de embarque é registrada uma vez e chega às pessoas certas, a operação pode ganhar consistência e a família pode ter mais previsibilidade. Isso é uma hipótese de valor a validar com usuários e operadores, não um resultado já medido pelo protótipo.”
+
+Benefícios a validar em um piloto:
+- Menos incerteza para as famílias sobre etapas importantes da viagem.
+- Menos esforço manual para consultar a rota e os registros do dia.
+- Maior consistência nos registros de embarque e desembarque.
+- Melhor organização de ausências e alterações da rotina.
+- Histórico que ajude operadores a investigar ocorrências e identificar oportunidades de melhoria.
+
+Indicadores que poderiam ser acompanhados:
+- Percentual de embarques e desembarques registrados corretamente.
+- Tempo entre um evento na rota e sua disponibilização aos perfis autorizados.
+- Frequência de divergências entre a lista prevista e a ocupação observada.
+- Número de contatos operacionais relacionados a dúvidas sobre a viagem.
+- Satisfação e facilidade de uso para famílias e motoristas.
+
+Esses indicadores exigem uma implantação real, consentimento e método de medição. O projeto ainda não produziu esses resultados.
+
+8. PRÓXIMOS PASSOS — DA INTERFACE A UM PILOTO RESPONSÁVEL
+
+Fala sugerida:
+“O próximo passo não é simplesmente colocar o protótipo em uso. É validar o fluxo com famílias, motoristas e operadores, definir quais dados são realmente necessários e construir a integração com controles de segurança. A implementação pode avançar por etapas, com um piloto limitado e critérios claros para decidir o que funciona.”
+
+Etapas recomendadas:
+1. Descoberta e desenho operacional: conversar com usuários, mapear rotas e exceções, definir permissões e validar os fluxos antes de automatizá-los.
+2. Base segura do produto: criar API e armazenamento, autenticação adequada, gestão de perfis e sessões de viagem, controles de acesso, auditoria e política de retenção.
+3. MVP integrado: conectar primeiro uma operação controlada a dados de rota e eventos; implementar confirmação de embarque e notificações; avaliar o rastreamento necessário e seu impacto em bateria, conectividade e privacidade.
+4. Piloto acompanhado: testar com poucos veículos, treinamento e suporte; medir confiabilidade, facilidade de uso e qualidade dos registros.
+5. Evolução: corrigir problemas observados e só então ampliar capacidade, cobertura móvel, acessibilidade e relatórios.
+
+A ordem e a tecnologia final dependem da descoberta com os operadores e dos requisitos de segurança, privacidade e conectividade.
+
+9. PRIVACIDADE, SEGURANÇA E CONFIANÇA
+
+Fala sugerida:
+“Como o produto envolve dados de alunos, confiança e privacidade não podem ser acrescentadas no fim. Precisam fazer parte do desenho desde o início: coletar apenas o necessário, limitar quem vê cada informação, proteger os dados e definir por quanto tempo eles ficam armazenados. O protótipo não processa uma operação real e não deve ser descrito como já certificado ou em conformidade operacional com a LGPD.”
+
+Pontos necessários antes de um piloto real:
+- Definir papéis e permissões para aluno, responsável, motorista e operador.
+- Avaliar a base legal, os avisos e as autorizações aplicáveis ao tratamento de dados, especialmente por envolver crianças e adolescentes.
+- Aplicar minimização de dados, retenção limitada e processos de atendimento aos direitos dos titulares.
+- Usar transporte seguro de dados, armazenamento protegido e gerenciamento adequado de credenciais e segredos.
+- Prever trilhas de auditoria, resposta a incidentes, backups e recuperação.
+- Avaliar riscos de localização em tempo real e evitar expor a rota a pessoas não autorizadas.
+- Testar acessibilidade, legibilidade e segurança de uso para motoristas, sem incentivar interação durante a condução.
+
+10. ENCERRAMENTO
+
+Fala sugerida:
+“O ToAqui começa com uma ideia prática: aproximar a informação da viagem de quem depende dela. A versão atual permite visualizar essa experiência e experimentar alguns fluxos; a próxima etapa é ouvir quem opera e utiliza o transporte, validar as prioridades e transformar os fluxos escolhidos em um serviço seguro e integrado. A pergunta que fica é: qual informação, no momento certo, faria a diferença na rotina de cada pessoa envolvida?”
+
+PERGUNTAS QUE PODEM SURGIR
+
+1. O ToAqui já mostra onde a van está em tempo real?
+Resposta: Não. O protótipo não usa GPS nem recebe localização de veículo. O mapa e o status são ilustrativos. O rastreamento é parte da visão e exigiria integração com dispositivos, conectividade, regras de acesso e uma decisão sobre frequência de atualização.
+
+2. O QR Code confirma que o aluno embarcou?
+Resposta: Ainda não. O protótipo gera um QR Code demonstrativo, mas não abre a câmera, não lê o código e não registra uma confirmação real. Para isso, seria necessário implementar leitura, validação no servidor, vínculo com a sessão e controles contra uso indevido.
+
+3. O responsável recebe uma notificação quando o aluno embarca?
+Resposta: Não nesta versão. Há uma tela de avisos de exemplo, mas não há envio de notificações ao celular nem sincronização com uma operação. Essa integração deve ser construída e testada antes de ser anunciada como disponível.
+
+4. Se o aluno avisar ausência, a rota do motorista muda?
+Resposta: Não no protótipo. O painel do aluno alterna um estado local para demonstrar a interação; ele não comunica a ausência ao motorista e não altera uma rota real. A versão integrada precisaria definir prazos, confirmação do aviso e regras para recalcular as paradas.
+
+5. Os registros continuam disponíveis depois que a página é fechada?
+Resposta: Não. Os registros de embarque, saída e ausência são apenas demonstrativos e permanecem na sessão atual. O tema é a preferência que pode ficar salva no navegador. Históricos reais dependeriam de API, banco de dados, política de retenção e permissões.
+
+6. O sistema já está pronto para uso por escolas ou empresas de transporte?
+Resposta: Não. É um protótipo de interface e interação, sem backend, banco de dados ou integrações operacionais. Ele serve para discutir e validar a experiência proposta; uso real exige desenvolvimento, testes, operação e controles adicionais.
+
+7. Como os dados dos alunos seriam protegidos?
+Resposta: Essa proteção precisa ser definida e implementada antes de tratar dados reais. O plano deve incluir coleta mínima, acesso por perfil, autenticação robusta, comunicação e armazenamento protegidos, retenção limitada, auditoria e procedimentos de resposta a incidentes. Não afirmamos que o protótipo atual já atende a esses requisitos.
+
+8. O projeto está em conformidade com a LGPD?
+Resposta: Não se deve afirmar isso sobre o protótipo. Uma implantação precisa passar por avaliação jurídica e técnica do tratamento, das finalidades, das bases legais, das autorizações aplicáveis e dos direitos dos titulares. Por envolver crianças e adolescentes, a proteção deve ser especialmente cuidadosa.
+
+9. O motorista não corre o risco de se distrair com o aplicativo?
+Resposta: Esse risco precisa orientar o desenho e a operação. O painel deve priorizar leitura rápida, interações simples e uso seguro; não deve exigir ações durante a condução. A rotina de uso, o treinamento e os momentos permitidos para registrar eventos precisam ser validados com motoristas e operadores.
+
+10. O que acontece se não houver internet?
+Resposta: A versão atual não sincroniza dados e não possui modo offline operacional. Em um produto real, seria necessário definir o que pode ser consultado ou registrado sem conexão, como os eventos seriam sincronizados depois e como conflitos seriam tratados.
+
+11. Como seriam calculadas as previsões de chegada?
+Resposta: Hoje, os horários são exemplos fixos. Uma previsão real exigiria dados de rota e localização e uma regra de estimativa que considerasse trânsito, paradas e qualidade da conexão. A precisão precisaria ser medida e comunicada sem prometer exatidão absoluta.
+
+12. O sistema respeita a capacidade do veículo?
+Resposta: Impedir excesso de capacidade é um requisito do produto, mas o protótipo não faz reservas nem controla a lotação de uma operação. A versão real precisaria validar capacidade configurada, alunos vinculados e alterações na sessão antes de confirmar uma alocação.
+
+13. Há biometria facial?
+Resposta: Não. Biometria aparece apenas como possibilidade nos requisitos futuros e exigiria análise cuidadosa de necessidade, proporcionalidade, riscos e proteção de dados. Não é uma funcionalidade implementada nem deve ser presumida como necessária; métodos menos invasivos devem ser avaliados primeiro.
+
+14. Como o ToAqui poderia ser implementado em uma operação existente?
+Resposta: A integração ainda não foi definida. O primeiro passo seria entender os sistemas, dispositivos, processos e responsabilidades da operação. Depois, seria possível desenhar uma integração limitada, testá-la em um piloto e expandir somente após validar segurança e confiabilidade.
+
+15. Como saberemos se a ideia trouxe resultado?
+Resposta: Definindo uma linha de base e indicadores antes do piloto, como confiabilidade dos registros, tempo de atualização, dúvidas operacionais e satisfação dos usuários. A comparação deve considerar o contexto da operação; o protótipo atual não mediu esses resultados.
+
+16. Qual seria o modelo de negócio?
+Resposta: Ainda não foi definido. Poderia ser explorada uma oferta para operadores públicos ou privados, mas preço, contratação, suporte e responsabilidades dependem de pesquisa com o mercado, custos de integração e modelo de operação. O projeto atual não valida receita nem viabilidade comercial.
+
+17. Por que apresentar o projeto agora, se ainda não está integrado?
+Resposta: Porque um protótipo permite tornar a proposta concreta, discutir fluxos e identificar dúvidas antes de investir em integrações mais caras. Ele é um instrumento para aprender e decidir os próximos passos, não uma promessa de serviço já disponível.
+
+18. O que já está implementado tecnicamente?
+Resposta: A interface é construída em Angular e apresenta login demonstrativo, navegação por perfil, painéis, alternância de tema e interações locais de demonstração. O projeto não possui API, banco de dados nem serviços externos para GPS, notificações ou validação de embarque.
+
+19. O nome ToAqui tem uma versão em inglês?
+Resposta: “I'm Here” aparece como sugestão no material do projeto. A identidade apresentada no protótipo é ToAqui; a escolha final de nome e posicionamento pode ser validada com o público e os operadores.
+
+20. Qual é a decisão necessária depois desta apresentação?
+Resposta: A decisão proposta é se vale avançar para uma etapa de descoberta com famílias, motoristas e operadores. Essa etapa pode priorizar os fluxos, confirmar requisitos de privacidade e segurança e definir o escopo de um piloto, antes de assumir compromissos de produto ou operação.
+
+LEMBRETES PARA QUEM APRESENTA
+- Dizer “protótipo” ou “demonstração” ao falar da versão atual.
+- Separar sempre “já existe” de “poderia existir em uma versão integrada”.
+- Não afirmar que há GPS, alertas reais, autenticação segura, dados persistentes ou conformidade legal implementados.
+- Não usar nomes, endereços ou horários fictícios como se fossem de usuários reais.
+- Quando não houver resposta validada, dizer que o ponto precisa ser investigado no piloto.
