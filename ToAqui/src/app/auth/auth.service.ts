@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Profile } from './profile';
+import { Profile, SignupProfile } from './profile';
 import { DEMO_ACCOUNTS } from './demo-credentials';
 
 interface RegisteredAccount {
-  profile: Profile;
+  profile: SignupProfile;
   username: string;
   password: string;
   name: string;
@@ -52,7 +52,7 @@ export class AuthService {
     return true;
   }
 
-  register(profile: Profile, name: string, username: string, password: string): boolean {
+  register(profile: SignupProfile, name: string, username: string, password: string): boolean {
     const normalizedUsername = username.trim().toLowerCase();
     const alreadyExists = [...DEMO_ACCOUNTS, ...this.registeredAccounts].some(
       (account) => account.username === normalizedUsername,

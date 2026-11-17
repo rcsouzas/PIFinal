@@ -23,7 +23,8 @@ export class LoginComponent {
     return {
       aluno: 'Aluno',
       responsavel: 'Responsável',
-      motorista: 'Motorista',
+      monitor: 'Monitor',
+      admin: 'Admin',
     }[profile];
   }
 
@@ -39,7 +40,7 @@ export class LoginComponent {
       return;
     }
 
-    void this.router.navigate([this.profile]);
+    void this.router.navigate([this.profile === 'admin' ? 'operacao' : this.profile]);
   }
 
   showHelp(): void {

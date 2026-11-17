@@ -5,11 +5,13 @@ import { SignupComponent } from './cadastro/signup.component';
 import { DriverDashboardComponent } from './motorista/driver-dashboard.component';
 import { ParentDashboardComponent } from './responsavel/parent-dashboard.component';
 import { StudentDashboardComponent } from './aluno/student-dashboard.component';
-import { profileGuard } from './auth/profile.guard';
+import { adminGuard, profileGuard } from './auth/profile.guard';
+import { OperationsComponent } from './operacao/operations.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'cadastro', component: SignupComponent },
+  { path: 'operacao', component: OperationsComponent, canActivate: [adminGuard] },
   {
     path: 'aluno',
     component: StudentDashboardComponent,
@@ -23,10 +25,10 @@ const routes: Routes = [
     data: { profile: 'responsavel' },
   },
   {
-    path: 'motorista',
+    path: 'monitor',
     component: DriverDashboardComponent,
     canActivate: [profileGuard],
-    data: { profile: 'motorista' },
+    data: { profile: 'monitor' },
   },
   { path: '**', redirectTo: '' },
 ];

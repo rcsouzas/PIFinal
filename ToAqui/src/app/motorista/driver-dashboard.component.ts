@@ -71,7 +71,7 @@ export class DriverDashboardComponent {
     this.lastUpdate = new Date();
     this.notifications.unshift({
       title: `${stop.student} ${stop.status === 'A bordo' ? 'embarcou' : 'desembarcou'}`,
-      detail: `${stop.address} · registro feito pelo motorista.`,
+      detail: `${stop.address} · registro feito pelo monitor.`,
       time: this.lastUpdateLabel,
     });
   }

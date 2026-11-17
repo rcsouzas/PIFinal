@@ -98,7 +98,7 @@
               <span>Responsável</span>
             </label>
             <label class="profile-option">
-              <input type="radio" name="profile" value="motorista" [(ngModel)]="profile" />
+              <input type="radio" name="profile" value="monitor" [(ngModel)]="profile" />
               <span class="profile-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
                   <path
@@ -106,7 +106,7 @@
                   />
                 </svg>
               </span>
-              <span>Motorista</span>
+              <span>Monitor</span>
             </label>
             <label class="profile-option">
               <input type="radio" name="profile" value="aluno" [(ngModel)]="profile" />
@@ -117,6 +117,16 @@
                 </svg>
               </span>
               <span>Aluno</span>
+            </label>
+            <label class="profile-option">
+              <input type="radio" name="profile" value="admin" [(ngModel)]="profile" />
+              <span class="profile-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3 5 6v5c0 4.7 3 8.3 7 10 4-1.7 7-5.3 7-10V6l-7-3Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </span>
+              <span>Admin</span>
             </label>
           </div>
         </fieldset>

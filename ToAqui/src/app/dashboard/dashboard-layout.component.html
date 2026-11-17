@@ -5,11 +5,24 @@
         <svg viewBox="0 0 48 48" aria-hidden="true">
           <path d="M7 18a5 5 0 0 1 5-5h24a5 5 0 0 1 5 5v14H7V18Z" fill="#102732" />
           <rect x="11" y="17" width="26" height="11" rx="3" fill="#e7f7f3" />
-          <path d="m15 23 2.2 2.2 4.2-4.4m2.4 2.2 2.2 2.2 4.2-4.4" fill="none" stroke="#167d72" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" />
+          <path
+            d="m15 23 2.2 2.2 4.2-4.4m2.4 2.2 2.2 2.2 4.2-4.4"
+            fill="none"
+            stroke="#167d72"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.8"
+          />
           <path d="M10 32h28" stroke="#102732" stroke-linecap="round" stroke-width="3" />
           <circle cx="14" cy="33" r="3" fill="#102732" />
           <circle cx="34" cy="33" r="3" fill="#102732" />
-          <path d="M31 6.5a6 6 0 0 1 12 0c0 4.2-6 10-6 10s-6-5.8-6-10Z" fill="#e7f7f3" stroke="#102732" stroke-linejoin="round" stroke-width="1.6" />
+          <path
+            d="M31 6.5a6 6 0 0 1 12 0c0 4.2-6 10-6 10s-6-5.8-6-10Z"
+            fill="#e7f7f3"
+            stroke="#102732"
+            stroke-linejoin="round"
+            stroke-width="1.6"
+          />
           <circle cx="37" cy="6.5" r="1.8" fill="#167d72" />
         </svg>
       </span>
@@ -23,7 +36,7 @@
       </button>
       <button type="button" [class.active]="activeTab === 'rota'" (click)="selectTab('rota')">
         <span aria-hidden="true">⌖</span>
-        {{ profile === 'motorista' ? 'Minha rota' : 'Viagem' }}
+        {{ profile === 'monitor' ? 'Minha rota' : 'Viagem' }}
       </button>
       <button type="button" [class.active]="activeTab === 'avisos'" (click)="selectTab('avisos')">
         <span aria-hidden="true">♧</span> Avisos
@@ -54,7 +67,10 @@
         </button>
         <div class="topbar-user">
           <span class="user-avatar">{{ profileName.slice(0, 1) }}</span>
-          <span><strong>{{ username }}</strong><small>{{ profileName }}</small></span>
+          <span
+            ><strong>{{ username }}</strong
+            ><small>{{ profileName }}</small></span
+          >
           <span class="demo-badge">DEMO</span>
         </div>
       </div>

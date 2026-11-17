@@ -43,6 +43,34 @@ describe('LoginComponent', () => {
     expect(navigateSpy).toHaveBeenCalledWith([account.profile]);
   });
 
+  it('routes the Admin account directly to the operational center', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    const component = fixture.componentInstance;
+    const account = DEMO_ACCOUNTS.find((item) => item.profile === 'admin');
+    if (!account) throw new Error('A conta de demonstração Admin não foi configurada.');
+
+    component.profile = account.profile;
+    component.username = account.username;
+    component.password = account.password;
+    component.onLogin();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['operacao']);
+  });
+
+  it('routes the Monitor account to the renamed route profile', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    const component = fixture.componentInstance;
+    const account = DEMO_ACCOUNTS.find((item) => item.profile === 'monitor');
+    if (!account) throw new Error('A conta de demonstração do monitor não foi configurada.');
+
+    component.profile = account.profile;
+    component.username = account.username;
+    component.password = account.password;
+    component.onLogin();
+
+    expect(navigateSpy).toHaveBeenCalledWith(['monitor']);
+  });
+
   it('shows a message and stays on login for invalid credentials', () => {
     const fixture = TestBed.createComponent(LoginComponent);
     const component = fixture.componentInstance;

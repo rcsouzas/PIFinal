@@ -29,16 +29,16 @@ Pontos observados no problema:
 
 Não afirmar que todos esses problemas acontecem em todas as operações. São dores que a proposta busca investigar e atender.
 
-3. A PROPOSTA — TRÊS PERSPECTIVAS, UMA JORNADA
+3. A PROPOSTA — QUATRO PERFIS, UMA JORNADA
 
 Fala sugerida:
-“O ToAqui organiza a experiência em torno da mesma viagem, mas respeita o que cada pessoa precisa fazer. A família consulta o acompanhamento e o estado do aluno. O motorista consulta a rota e registra movimentos. O aluno acompanha a própria jornada, pode avisar uma ausência e vê como funcionaria uma confirmação de embarque. A ideia é reduzir a distância entre o que acontece na rota e o que cada pessoa precisa saber.”
+“O ToAqui organiza a experiência em torno da mesma viagem, mas respeita o que cada pessoa precisa fazer. A família consulta o acompanhamento e o estado do aluno. O Monitor consulta a rota e registra movimentos. O aluno acompanha a própria jornada, pode avisar uma ausência e vê como funcionaria uma confirmação de embarque. O Admin organiza os cadastros e as viagens na Central operacional. A ideia é reduzir a distância entre o que acontece na rota e o que cada pessoa precisa saber.”
 
 Proposta de valor por perfil:
 - Responsáveis: mais clareza sobre a viagem, o assento associado ao aluno e os avisos relevantes.
-- Motoristas: uma visão direta das paradas e dos registros de embarque e saída.
+- Monitor: uma visão direta das paradas e dos registros de embarque e saída.
 - Alunos: previsibilidade sobre a jornada e uma forma simples de se preparar para o transporte.
-- Operadores: uma base para padronizar processos e, em uma versão integrada, consultar históricos e ocorrências.
+- Admin: gestão demonstrativa de alunos, responsáveis, equipe, veículos, viagens e indicadores operacionais.
 
 4. COMO SERIA A EXPERIÊNCIA
 
@@ -58,15 +58,17 @@ Esta é a visão de funcionamento do produto. A versão atual não implementa es
 5. O PROTÓTIPO ATUAL — UMA FORMA DE TORNAR A IDEIA CONCRETA
 
 Fala sugerida:
-“Para avaliar a proposta, já existe um protótipo navegável. Ele permite explorar três painéis e entender como a informação poderia ser apresentada. O objetivo desta versão é demonstrar a experiência e alguns comportamentos de interface, não operar um transporte escolar real.”
+“Para avaliar a proposta, já existe um protótipo navegável. Ele permite explorar os painéis de aluno, responsável e Monitor, além de uma Central operacional exclusiva do Admin. O objetivo desta versão é demonstrar a experiência e alguns comportamentos de interface, não operar um transporte escolar real.”
 
 O que é possível demonstrar hoje:
-- Acesso demonstrativo e painéis separados para aluno, responsável e motorista.
+- Acesso demonstrativo para aluno, responsável, Monitor e Admin. O login Admin abre diretamente a Central operacional.
+- Na Central do Admin, CRUD de responsáveis, alunos, motoristas, veículos e viagens, com vínculos e validação de capacidade.
+- Início e conclusão demonstrativos de viagem, registro de embarque/desembarque e KPIs derivados dos dados locais.
 - Navegação entre visão geral, viagem ou rota e avisos.
 - Alternância entre tema claro e escuro, com preferência salva no navegador.
 - No painel do aluno, alternância de um aviso de ausência e de um lembrete de proximidade, apenas na tela atual.
 - Exibição de um QR Code ilustrativo, sem leitura ou confirmação de embarque.
-- No painel do motorista, registro demonstrativo de embarque e saída, com atualização do estado da parada e da contagem na sessão aberta.
+- No painel do Monitor, registro demonstrativo de embarque e saída, com atualização do estado da parada e da contagem na sessão aberta.
 - No painel do responsável, visualização ilustrativa de status, assento, rota e avisos.
 
 Limites que devem ser explicados durante a demonstração:
@@ -74,8 +76,9 @@ Limites que devem ser explicados durante a demonstração:
 - O mapa é uma ilustração; não há localização por GPS nem rastreamento em tempo real.
 - Não existe serviço de notificações conectado aos celulares.
 - O QR Code contém um identificador de demonstração e não valida uma viagem.
-- As alterações de ausência e os registros do motorista não são persistidos nem sincronizados entre perfis.
-- O cadastro e as contas de demonstração são mantidos em memória; não há autenticação de produção, API ou banco de dados.
+- As alterações de ausência e os registros do painel do Monitor não são persistidos nem sincronizados entre perfis.
+- Os cadastros da Central são persistidos somente no armazenamento local do navegador; não são sincronizados entre usuários ou dispositivos.
+- As contas de demonstração são mantidas em memória; não há autenticação de produção, API ou banco de dados. A restrição de acesso Admin é apenas no cliente.
 - A interface não deve ser utilizada para orientar uma viagem real.
 
 6. UMA DEMONSTRAÇÃO CURTA E CLARA
@@ -86,13 +89,14 @@ Preparação:
 - Avisar antes de começar: “Os dados desta tela são fictícios e servem para demonstrar a navegação.”
 
 Sequência sugerida:
-1. Mostrar que há três perfis e explicar rapidamente a necessidade de visões diferentes.
-2. Abrir o painel do responsável. Apontar status, previsão, assento, rota ilustrada e avisos. Reforçar que não são dados reais.
-3. Abrir o painel do aluno. Mostrar o aviso de ausência, o lembrete e o QR Code; dizer explicitamente que são interações demonstrativas.
-4. Abrir o painel do motorista. Entrar em “Minha rota”, registrar um embarque e depois uma saída. Mostrar a mudança de estado e o histórico gerado naquela sessão.
-5. Alternar o tema claro/escuro e encerrar relacionando as telas à jornada proposta.
+1. Mostrar os quatro perfis e explicar que somente Admin abre a Central operacional.
+2. Entrar como Admin (`rcs4`, senha `1234`). Criar ou consultar os cadastros, montar uma viagem, iniciar e registrar um embarque; mostrar os KPIs.
+3. Abrir o painel do responsável. Apontar status, previsão, assento, rota ilustrada e avisos. Reforçar que não são dados reais.
+4. Abrir o painel do aluno. Mostrar o aviso de ausência, o lembrete e o QR Code; dizer explicitamente que são interações demonstrativas.
+5. Abrir o painel do Monitor. Entrar em “Minha rota”, registrar um embarque e depois uma saída.
+6. Alternar o tema claro/escuro e encerrar relacionando as telas à jornada proposta.
 
-Evitar gastar tempo lendo cada cartão. O foco da demonstração é mostrar como os três perfis se conectariam em um produto integrado.
+Evitar gastar tempo lendo cada cartão. O foco da demonstração é mostrar como os quatro perfis se conectariam em um produto integrado.
 
 7. O QUE TORNA A IDEIA ÚTIL
 

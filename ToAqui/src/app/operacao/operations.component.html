@@ -1,0 +1,556 @@
+<main class="operations-page">
+  <header class="operations-header">
+    <a class="operations-brand" routerLink="/operacao">ToAqui<span>.</span></a>
+    <div>
+      <span class="user-label">Admin</span>
+      <span class="user-label">{{ auth.displayName || auth.username }}</span>
+      <button mat-button type="button" (click)="logout()">Sair da conta</button>
+    </div>
+  </header>
+
+  <section class="operations-content">
+    <div class="page-heading">
+      <div>
+        <span class="eyebrow">GESTÃO DO TRANSPORTE ESCOLAR</span>
+        <h1>Central operacional</h1>
+        <p>Cadastre a equipe e os alunos, organize viagens e acompanhe os embarques.</p>
+      </div>
+      <span class="demo-label">Dados salvos neste navegador</span>
+    </div>
+
+    <nav class="section-nav" aria-label="Seções da central operacional">
+      <button
+        *ngFor="let item of sections"
+        mat-button
+        type="button"
+        [class.selected]="section === item.id"
+        (click)="selectSection(item.id)"
+      >
+        {{ item.label }}
+      </button>
+    </nav>
+
+    <p class="feedback success" role="status" *ngIf="message">{{ message }}</p>
+    <p class="feedback error" role="alert" *ngIf="error">{{ error }}</p>
+
+    <ng-container *ngIf="section === 'resumo'">
+      <div class="kpi-grid">
+        <mat-card appearance="outlined" class="kpi-card">
+          <mat-card-content>
+            <span>VIAGENS EM ANDAMENTO</span>
+            <strong>{{ data.activeTrips() }}</strong>
+            <small>Operações ativas hoje</small>
+          </mat-card-content>
+        </mat-card>
+        <mat-card appearance="outlined" class="kpi-card">
+          <mat-card-content>
+            <span>ALUNOS A BORDO</span>
+            <strong>{{ data.studentsOnboard() }}</strong>
+            <small>Presenças registradas nas viagens ativas</small>
+          </mat-card-content>
+        </mat-card>
+        <mat-card appearance="outlined" class="kpi-card">
+          <mat-card-content>
+            <span>ASSENTOS DISPONÍVEIS</span>
+            <strong>{{ data.availableSeats() }}</strong>
+            <small>Capacidade da frota menos alunos a bordo</small>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <mat-card appearance="outlined" class="content-card">
+        <mat-card-content>
+          <div class="card-heading">
+            <div>
+              <span class="eyebrow">FLUXO PRINCIPAL</span>
+              <h2>Da matrícula à viagem</h2>
+            </div>
+            <button mat-flat-button type="button" (click)="selectSection('viagens')">
+              Organizar viagens
+            </button>
+          </div>
+          <ol class="workflow-list">
+            <li>
+              <span>1</span>
+              <div>
+                <strong>Cadastre responsáveis e alunos</strong
+                ><small>Vincule cada aluno à sua família.</small>
+              </div>
+            </li>
+            <li>
+              <span>2</span>
+              <div>
+                <strong>Cadastre motorista e veículo</strong
+                ><small>Informe a capacidade real para validar a lotação.</small>
+              </div>
+            </li>
+            <li>
+              <span>3</span>
+              <div>
+                <strong>Monte e inicie uma viagem</strong
+                ><small>Associe motorista, veículo e alunos; a capacidade é validada.</small>
+              </div>
+            </li>
+            <li>
+              <span>4</span>
+              <div>
+                <strong>Registre os embarques</strong
+                ><small>Atualize a presença e acompanhe os indicadores em tempo real.</small>
+              </div>
+            </li>
+          </ol>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+
+    <ng-container *ngIf="section === 'responsaveis'">
+      <div class="management-grid">
+        <mat-card appearance="outlined" class="form-card">
+          <mat-card-content>
+            <h2>{{ editId ? 'Editar responsável' : 'Novo responsável' }}</h2>
+            <form (ngSubmit)="saveGuardian()">
+              <mat-form-field appearance="outline">
+                <mat-label>Nome completo</mat-label>
+                <input matInput name="guardianName" [(ngModel)]="guardianForm.name" required />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Telefone</mat-label>
+                <input matInput name="guardianPhone" [(ngModel)]="guardianForm.phone" required />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input
+                  matInput
+                  name="guardianEmail"
+                  type="email"
+                  [(ngModel)]="guardianForm.email"
+                  required
+                />
+              </mat-form-field>
+              <div class="form-actions">
+                <button mat-flat-button type="submit">
+                  {{ editId ? 'Salvar alterações' : 'Cadastrar responsável' }}
+                </button>
+                <button *ngIf="editId" mat-button type="button" (click)="cancelEdit()">
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <mat-card appearance="outlined" class="list-card">
+          <mat-card-content>
+            <h2>
+              Responsáveis cadastrados <span>{{ data.guardians().length }}</span>
+            </h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Contato</th>
+                    <th>Alunos</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let guardian of data.guardians()">
+                    <td>{{ guardian.name }}</td>
+                    <td>
+                      {{ guardian.phone }}<small>{{ guardian.email }}</small>
+                    </td>
+                    <td>{{ data.guardianStudentCount(guardian.id) }}</td>
+                    <td class="row-actions">
+                      <button mat-button type="button" (click)="editGuardian(guardian)">
+                        Editar</button
+                      ><button mat-button type="button" (click)="deleteGuardian(guardian)">
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="data.guardians().length === 0">
+                    <td colspan="4" class="empty-row">Nenhum responsável cadastrado.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="section === 'alunos'">
+      <div class="management-grid">
+        <mat-card appearance="outlined" class="form-card">
+          <mat-card-content>
+            <h2>{{ editId ? 'Editar aluno' : 'Novo aluno' }}</h2>
+            <form (ngSubmit)="saveStudent()">
+              <mat-form-field appearance="outline"
+                ><mat-label>Nome do aluno</mat-label
+                ><input matInput name="studentName" [(ngModel)]="studentForm.name" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>Escola</mat-label
+                ><input matInput name="studentSchool" [(ngModel)]="studentForm.school" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>Turma</mat-label
+                ><input matInput name="studentGrade" [(ngModel)]="studentForm.grade" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>Responsável</mat-label>
+                <mat-select name="studentGuardian" [(ngModel)]="studentForm.guardianId" required>
+                  <mat-option *ngFor="let guardian of data.guardians()" [value]="guardian.id">{{
+                    guardian.name
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="form-actions">
+                <button mat-flat-button type="submit">
+                  {{ editId ? 'Salvar alterações' : 'Cadastrar aluno' }}</button
+                ><button *ngIf="editId" mat-button type="button" (click)="cancelEdit()">
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <mat-card appearance="outlined" class="list-card">
+          <mat-card-content>
+            <h2>
+              Alunos cadastrados <span>{{ data.students().length }}</span>
+            </h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Aluno</th>
+                    <th>Escola / turma</th>
+                    <th>Responsável</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let student of data.students()">
+                    <td>{{ student.name }}</td>
+                    <td>
+                      {{ student.school }}<small>{{ student.grade }}</small>
+                    </td>
+                    <td>{{ data.guardianName(student.guardianId) }}</td>
+                    <td class="row-actions">
+                      <button mat-button type="button" (click)="editStudent(student)">Editar</button
+                      ><button mat-button type="button" (click)="deleteStudent(student)">
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="data.students().length === 0">
+                    <td colspan="4" class="empty-row">Nenhum aluno cadastrado.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="section === 'motoristas'">
+      <div class="management-grid">
+        <mat-card appearance="outlined" class="form-card">
+          <mat-card-content>
+            <h2>{{ editId ? 'Editar motorista' : 'Novo motorista' }}</h2>
+            <form (ngSubmit)="saveDriver()">
+              <mat-form-field appearance="outline"
+                ><mat-label>Nome completo</mat-label
+                ><input matInput name="driverName" [(ngModel)]="driverForm.name" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>Telefone</mat-label
+                ><input matInput name="driverPhone" [(ngModel)]="driverForm.phone" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>CNH / registro</mat-label
+                ><input matInput name="driverLicense" [(ngModel)]="driverForm.license" required
+              /></mat-form-field>
+              <div class="form-actions">
+                <button mat-flat-button type="submit">
+                  {{ editId ? 'Salvar alterações' : 'Cadastrar motorista' }}</button
+                ><button *ngIf="editId" mat-button type="button" (click)="cancelEdit()">
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <mat-card appearance="outlined" class="list-card">
+          <mat-card-content>
+            <h2>
+              Motoristas cadastrados <span>{{ data.drivers().length }}</span>
+            </h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>CNH / registro</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let driver of data.drivers()">
+                    <td>{{ driver.name }}</td>
+                    <td>{{ driver.phone }}</td>
+                    <td>{{ driver.license }}</td>
+                    <td class="row-actions">
+                      <button mat-button type="button" (click)="editDriver(driver)">Editar</button
+                      ><button mat-button type="button" (click)="deleteDriver(driver)">
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="data.drivers().length === 0">
+                    <td colspan="4" class="empty-row">Nenhum motorista cadastrado.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="section === 'veiculos'">
+      <div class="management-grid">
+        <mat-card appearance="outlined" class="form-card">
+          <mat-card-content>
+            <h2>{{ editId ? 'Editar veículo' : 'Novo veículo' }}</h2>
+            <form (ngSubmit)="saveVehicle()">
+              <mat-form-field appearance="outline"
+                ><mat-label>Placa</mat-label
+                ><input matInput name="vehiclePlate" [(ngModel)]="vehicleForm.plate" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>Modelo</mat-label
+                ><input matInput name="vehicleModel" [(ngModel)]="vehicleForm.model" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>Capacidade de alunos</mat-label
+                ><input
+                  matInput
+                  name="vehicleCapacity"
+                  type="number"
+                  min="1"
+                  step="1"
+                  [(ngModel)]="vehicleForm.capacity"
+                  required
+              /></mat-form-field>
+              <div class="form-actions">
+                <button mat-flat-button type="submit">
+                  {{ editId ? 'Salvar alterações' : 'Cadastrar veículo' }}</button
+                ><button *ngIf="editId" mat-button type="button" (click)="cancelEdit()">
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <mat-card appearance="outlined" class="list-card">
+          <mat-card-content>
+            <h2>
+              Veículos cadastrados <span>{{ data.vehicles().length }}</span>
+            </h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Placa</th>
+                    <th>Modelo</th>
+                    <th>Capacidade</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let vehicle of data.vehicles()">
+                    <td>{{ vehicle.plate }}</td>
+                    <td>{{ vehicle.model }}</td>
+                    <td>{{ vehicle.capacity }} alunos</td>
+                    <td class="row-actions">
+                      <button mat-button type="button" (click)="editVehicle(vehicle)">Editar</button
+                      ><button mat-button type="button" (click)="deleteVehicle(vehicle)">
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                  <tr *ngIf="data.vehicles().length === 0">
+                    <td colspan="4" class="empty-row">Nenhum veículo cadastrado.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="section === 'viagens'">
+      <div class="management-grid">
+        <mat-card appearance="outlined" class="form-card">
+          <mat-card-content>
+            <h2>{{ editId ? 'Editar viagem' : 'Nova viagem' }}</h2>
+            <form (ngSubmit)="saveTrip()">
+              <mat-form-field appearance="outline"
+                ><mat-label>Nome da rota</mat-label
+                ><input matInput name="tripName" [(ngModel)]="tripForm.name" required
+              /></mat-form-field>
+              <mat-form-field appearance="outline"
+                ><mat-label>Data</mat-label
+                ><input matInput name="tripDate" type="date" [(ngModel)]="tripForm.date" required
+              /></mat-form-field>
+              <div class="form-row">
+                <mat-form-field appearance="outline"
+                  ><mat-label>Saída</mat-label
+                  ><input
+                    matInput
+                    name="tripDeparture"
+                    type="time"
+                    [(ngModel)]="tripForm.departureTime"
+                    required
+                /></mat-form-field>
+                <mat-form-field appearance="outline"
+                  ><mat-label>Chegada prevista</mat-label
+                  ><input
+                    matInput
+                    name="tripArrival"
+                    type="time"
+                    [(ngModel)]="tripForm.arrivalTime"
+                    required
+                /></mat-form-field>
+              </div>
+              <mat-form-field appearance="outline"
+                ><mat-label>Motorista</mat-label
+                ><mat-select name="tripDriver" [(ngModel)]="tripForm.driverId" required
+                  ><mat-option *ngFor="let driver of data.drivers()" [value]="driver.id">{{
+                    driver.name
+                  }}</mat-option></mat-select
+                ></mat-form-field
+              >
+              <mat-form-field appearance="outline"
+                ><mat-label>Veículo</mat-label
+                ><mat-select name="tripVehicle" [(ngModel)]="tripForm.vehicleId" required
+                  ><mat-option *ngFor="let vehicle of data.vehicles()" [value]="vehicle.id"
+                    >{{ vehicle.model }} · {{ vehicle.plate }} ({{
+                      vehicle.capacity
+                    }}
+                    lugares)</mat-option
+                  ></mat-select
+                ></mat-form-field
+              >
+              <mat-form-field appearance="outline"
+                ><mat-label>Alunos da viagem</mat-label
+                ><mat-select name="tripStudents" [(ngModel)]="tripForm.studentIds" multiple required
+                  ><mat-option *ngFor="let student of data.students()" [value]="student.id">{{
+                    student.name
+                  }}</mat-option></mat-select
+                ></mat-form-field
+              >
+              <mat-form-field appearance="outline"
+                ><mat-label>Status</mat-label
+                ><mat-select name="tripStatus" [(ngModel)]="tripForm.status"
+                  ><mat-option value="planejada">Planejada</mat-option
+                  ><mat-option value="em-andamento">Em andamento</mat-option
+                  ><mat-option value="concluida">Concluída</mat-option></mat-select
+                ></mat-form-field
+              >
+              <div class="form-actions">
+                <button mat-flat-button type="submit">
+                  {{ editId ? 'Salvar alterações' : 'Cadastrar viagem' }}</button
+                ><button *ngIf="editId" mat-button type="button" (click)="cancelEdit()">
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+        <div class="trip-list">
+          <mat-card appearance="outlined" class="list-card" *ngFor="let trip of data.trips()">
+            <mat-card-content>
+              <div class="trip-heading">
+                <div>
+                  <span class="eyebrow"
+                    >{{ trip.date | date: 'dd/MM/yyyy' }} · {{ trip.departureTime }}–{{
+                      trip.arrivalTime
+                    }}</span
+                  >
+                  <h2>{{ trip.name }}</h2>
+                </div>
+                <span class="trip-status" [class.running]="trip.status === 'em-andamento'">{{
+                  statusLabel(trip.status)
+                }}</span>
+              </div>
+              <p class="trip-meta">
+                {{ data.driverName(trip.driverId) }} · {{ data.vehicleLabel(trip.vehicleId) }}
+              </p>
+              <div class="attendance-list">
+                <div class="attendance-row" *ngFor="let studentId of trip.studentIds">
+                  <span
+                    ><strong>{{ data.studentName(studentId) }}</strong
+                    ><small>{{ attendanceLabel(trip.attendance[studentId]) }}</small></span
+                  >
+                  <button
+                    mat-stroked-button
+                    type="button"
+                    [disabled]="trip.status === 'concluida'"
+                    (click)="updateAttendance(trip, studentId)"
+                  >
+                    {{
+                      trip.attendance[studentId] === 'aguardando'
+                        ? 'Registrar embarque'
+                        : trip.attendance[studentId] === 'a-bordo'
+                          ? 'Registrar desembarque'
+                          : 'Marcar aguardando'
+                    }}
+                  </button>
+                </div>
+                <p *ngIf="trip.studentIds.length === 0" class="empty-row">
+                  Nenhum aluno associado.
+                </p>
+              </div>
+              <div class="trip-actions">
+                <button
+                  mat-button
+                  type="button"
+                  [disabled]="trip.status === 'em-andamento'"
+                  (click)="updateTripStatus(trip, 'em-andamento')"
+                >
+                  Iniciar viagem
+                </button>
+                <button
+                  mat-button
+                  type="button"
+                  [disabled]="trip.status !== 'em-andamento'"
+                  (click)="updateTripStatus(trip, 'concluida')"
+                >
+                  Concluir viagem
+                </button>
+                <button mat-button type="button" (click)="editTrip(trip)">Editar</button>
+                <button mat-button type="button" (click)="deleteTrip(trip)">Excluir</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <mat-card appearance="outlined" class="list-card" *ngIf="data.trips().length === 0"
+            ><mat-card-content
+              ><p class="empty-row">Nenhuma viagem cadastrada.</p></mat-card-content
+            ></mat-card
+          >
+        </div>
+      </div>
+    </ng-container>
+
+    <p class="storage-note">
+      Esta versão demonstra o fluxo no navegador. Os dados ficam no armazenamento local deste
+      dispositivo; não há sincronização com servidor.
+    </p>
+  </section>
+</main>

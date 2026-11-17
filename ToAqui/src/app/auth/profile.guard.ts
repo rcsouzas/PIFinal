@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { Profile } from './profile';
 
 function isProfile(value: unknown): value is Profile {
-  return value === 'aluno' || value === 'responsavel' || value === 'motorista';
+  return value === 'aluno' || value === 'responsavel' || value === 'monitor' || value === 'admin';
 }
 
 export const profileGuard: CanActivateFn = (route) => {
@@ -15,4 +15,11 @@ export const profileGuard: CanActivateFn = (route) => {
   return isProfile(expectedProfile) && auth.profile === expectedProfile
     ? true
     : router.parseUrl('/');
+};
+
+export const adminGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+
+  return auth.profile === 'admin' ? true : router.parseUrl('/');
 };

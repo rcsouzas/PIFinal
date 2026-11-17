@@ -10,11 +10,12 @@ ANTES DE COMECAR: O QUE E ESTE TOAQUI?
 ======================================
 
 O ToAqui e uma demonstracao de um aplicativo para acompanhar o transporte
-escolar. Ele mostra como poderiam funcionar tres tipos de conta:
+escolar. Ele mostra quatro tipos de conta:
 
   ALUNO         Consulta a viagem, o assento e os avisos.
   RESPONSAVEL   Acompanha a viagem e verifica o status do aluno.
-  MOTORISTA     Consulta as paradas e registra embarques e saidas.
+  MONITOR       Consulta as paradas e registra embarques e saidas.
+  ADMIN         Organiza os cadastros, as viagens e os indicadores da operacao.
 
 Pense nesta versao como uma maquete de uma casa. A maquete ajuda a ver onde
 ficariam os quartos e como se anda pela casa, mas ainda nao e a casa de verdade.
@@ -24,7 +25,8 @@ ligado a uma central real de transportes.
 Por isso, nomes, horarios, enderecos, avisos e localizacao que aparecem na tela
 sao exemplos inventados. O desenho do trajeto nao e um mapa GPS, nao mostra
 onde uma van esta de verdade e nao deve ser usado para organizar uma viagem
-real. Os registros do motorista valem somente enquanto a pagina esta aberta.
+real. Os registros do painel do Monitor valem somente enquanto a pagina esta
+aberta. Os cadastros da Central operacional ficam salvos no navegador usado.
 
 
 CAPITULO 1: COMO ABRIR O TOAQUI
@@ -67,26 +69,32 @@ http://localhost:4200/ ja funciona.
 CAPITULO 2: COMO ENTRAR NAS CONTAS DE EXEMPLO
 =============================================
 
-Na primeira tela ha tres opcoes de perfil. Perfil e apenas uma maneira de
+Na primeira tela ha quatro opcoes de perfil. Perfil e apenas uma maneira de
 dizer ao ToAqui qual tipo de pessoa esta entrando. Escolha um perfil, digite
 seu usuario e senha, e pressione "Entrar na minha conta".
 
 Use estas combinacoes para conhecer o prototipo:
 
-  Escolha "Aluno":
+  Escolha "Responsavel":
     Usuario: rcs1
     Senha:   1234
 
-  Escolha "Responsavel":
+  Escolha "Monitor":
     Usuario: rcs2
     Senha:   1234
 
-  Escolha "Motorista":
+  Escolha "Aluno":
     Usuario: rcs3
     Senha:   1234
 
+  Escolha "Admin":
+    Usuario: rcs4
+    Senha:   1234
+
 O perfil e o usuario precisam formar o par certo. Por exemplo, selecione
-"Aluno" ao usar rcs1. A senha e igual nas tres contas.
+"Admin" ao usar rcs4. A senha e igual nas quatro contas. Somente a conta Admin
+abre a Central operacional; depois do login, ela e direcionada para essa tela.
+As outras tres contas abrem seus paineis e nao tem acesso a Central.
 
 O desenho de olho ao lado da senha serve para mostrar ou esconder o que foi
 digitado. Para voltar a tela inicial e experimentar outra conta, procure
@@ -97,8 +105,8 @@ privadas: qualquer pessoa que veja este guia pode usa-las. Nunca use a senha
 1234 para proteger dados reais.
 
 
-CAPITULO 3: UM PASSEIO PELOS TRES PAINEIS
-=========================================
+CAPITULO 3: UM PASSEIO PELOS PAINEIS E PELA CENTRAL
+===================================================
 
 Os paineis foram decorados com a mesma ideia visual da entrada do ToAqui: verde
 azulado, formas suaves, botoes claros e cartoes que agrupam informacoes. O menu
@@ -108,7 +116,7 @@ vai para o alto para que tudo continue facil de encontrar.
 3.1. O painel do aluno
 ----------------------
 
-Entre escolhendo "Aluno", usuario rcs1 e senha 1234.
+Entre escolhendo "Aluno", usuario rcs3 e senha 1234.
 
 Na pagina inicial do painel, observe:
 
@@ -126,7 +134,7 @@ O botao "Ver detalhes" tambem leva a parte da viagem.
 3.2. O painel do responsavel
 ----------------------------
 
-Entre escolhendo "Responsavel", usuario rcs2 e senha 1234.
+Entre escolhendo "Responsavel", usuario rcs1 e senha 1234.
 
 Este painel foi pensado para dar uma resposta rapida a pergunta: "Como esta o
 transporte agora?". Veja o status, a previsao, o assento e o resumo do trajeto.
@@ -137,12 +145,12 @@ O nome, o endereco, a localizacao e os horarios sao inventados. O painel ainda
 nao envia mensagens a pais ou responsaveis e nao acompanha um veiculo de
 verdade.
 
-3.3. O painel do motorista
+3.3. O painel do Monitor
 --------------------------
 
-Entre escolhendo "Motorista", usuario rcs3 e senha 1234.
+Entre escolhendo "Monitor", usuario rcs2 e senha 1234.
 
-O painel destaca a rota, o numero de lugares ocupados e a previsao de chegada.
+O painel do Monitor destaca a rota, o numero de lugares ocupados e a previsao de chegada.
 Abra "Minha rota" para ver as paradas em ordem. Em cada parada ha uma acao para
 registrar o movimento do aluno:
 
@@ -157,6 +165,23 @@ Essas mudancas sao apenas uma encenacao para explorar a tela. Ao atualizar ou
 fechar a pagina, elas nao formam um registro oficial nem sao enviadas a uma
 escola.
 
+3.4. A Central operacional do Admin
+-----------------------------------
+
+Entre escolhendo "Admin", usuario rcs4 e senha 1234. O ToAqui abre diretamente
+a Central operacional. Essa area e separada dos paineis do Aluno, Responsavel
+e Monitor; somente o perfil Admin pode acessa-la.
+
+Na Central, o menu permite cadastrar, editar e excluir responsaveis, alunos,
+motoristas, veiculos e viagens. Os alunos ficam ligados a responsaveis. Para
+montar uma viagem, associe motorista, veiculo e alunos; a tela impede exceder
+a capacidade do veiculo. Depois, inicie a viagem e registre embarques e
+desembarques. O Dashboard da Central mostra viagens em andamento, alunos a
+bordo e assentos disponiveis.
+
+Os registros da Central ficam no armazenamento local do navegador e nao sao
+compartilhados com outras contas, computadores ou celulares. Use somente os
+dados ficticios desta demonstracao.
 
 CAPITULO 4: COMO O VISUAL FOI ENFEITADO
 =======================================
@@ -234,8 +259,8 @@ PAINEL
   A area que aparece depois do login, com resumo, menu, viagem e avisos.
 
 PERFIL
-  O tipo de conta: aluno, responsavel ou motorista. Perfis podem ver informacoes
-  diferentes.
+  O tipo de conta: aluno, responsavel, monitor ou Admin. A conta Admin acessa
+  somente a Central operacional; os outros perfis tem seus paineis.
 
 SERVIDOR DE DESENVOLVIMENTO
   O programa temporario que deixa o site aberto no computador enquanto fazemos
@@ -243,7 +268,7 @@ SERVIDOR DE DESENVOLVIMENTO
 
 TESTE
   Uma verificacao automatica que pergunta ao programa se uma tarefa continua
-  funcionando, por exemplo, se o login do motorista aceita a conta certa.
+  funcionando, por exemplo, se somente o Admin consegue abrir a Central.
 
 BUILD
   Uma verificacao que prepara e confere o site como um conjunto. Se ela
@@ -277,8 +302,8 @@ PRIMEIRA VERIFICACAO: os testes
    anote a mensagem; ela costuma indicar o que precisa ser investigado.
 
 Os testes atuais verificam os logins, a separacao das credenciais, a saida da
-conta, o encaminhamento ao perfil escolhido e a atualizacao demonstrativa
-das paradas do motorista.
+conta, o encaminhamento ao perfil escolhido, o acesso exclusivo do Admin a
+Central e a atualizacao demonstrativa das paradas.
 
 SEGUNDA VERIFICACAO: a compilacao
 
@@ -304,7 +329,7 @@ Quando fizer uma mudanca, siga estes passos:
 1. Escreva a data da mudanca no fim deste livro.
 2. Conte com palavras simples o que mudou e por que.
 3. Explique o caminho para encontrar a mudanca na tela. Por exemplo:
-   "Entre como motorista e escolha Minha rota".
+   "Entre como Monitor e escolha Minha rota".
 4. Ensine como experimentar a mudanca, com passos numerados e o resultado que
    a pessoa deve observar.
 5. Se uma informacao antiga deixou de ser verdadeira, corrija-a. Nao deixe no
@@ -355,11 +380,14 @@ somente os arquivos daquela pasta.
 
   src/app/responsavel/
     Tudo que pertence ao painel do responsavel, separado da tela de aluno e
-    da tela de motorista.
+    da tela do Monitor.
 
   src/app/motorista/
-    Tudo que pertence ao painel do motorista, inclusive as paradas e os
+    Tudo que pertence ao painel do Monitor, inclusive as paradas e os
     registros de embarque e saida.
+
+  src/app/operacao/
+    Central operacional exclusiva do Admin, com cadastros, viagens e KPIs.
 
   src/app/dashboard/
     A moldura compartilhada: menu, cabecalho, saudacao e rodape que aparecem
@@ -382,8 +410,8 @@ somente os arquivos daquela pasta.
     O arquivo geral que carrega os estilos compartilhados da moldura.
 
   src/app/app-routing-module.ts
-    O mapa de enderecos: escolhe login, painel de aluno, de responsavel ou de
-    motorista.
+    O mapa de enderecos: escolhe login, os paineis de Aluno, Responsavel e
+    Monitor, ou a Central operacional do Admin.
 
   Arquivos terminados em .spec.ts
     Testes automaticos. Eles verificam se as partes principais continuam
@@ -414,12 +442,13 @@ Agora cada parte tem uma morada:
    alterar as credenciais do codigo.
 4. Para mudar o que o aluno ve ou faz, abra "src/app/aluno".
 5. Para mudar o que o responsavel ve ou faz, abra "src/app/responsavel".
-6. Para mudar o que o motorista ve ou faz, abra "src/app/motorista".
-7. Para mudar o menu, o cabecalho ou a moldura igual para os tres paineis,
+6. Para mudar o que o Monitor ve ou faz, abra "src/app/motorista".
+7. Para mudar os cadastros e viagens da Central, abra "src/app/operacao".
+8. Para mudar o menu, o cabecalho ou a moldura igual para os tres paineis,
    procure "src/app/dashboard".
-8. Para mudar o endereco que leva a cada tela, abra
+9. Para mudar o endereco que leva a cada tela, abra
    "src/app/app-routing-module.ts".
-9. Para trocar uma credencial de demonstracao no codigo, altere a conta
+10. Para trocar uma credencial de demonstracao no codigo, altere a conta
    correspondente em "src/app/auth/demo-credentials.ts". A tela de login e os
    testes leem essa mesma lista, para evitar manter copias diferentes.
 
@@ -432,7 +461,7 @@ Cada tela costuma ter tres arquivos com o mesmo comeco de nome:
 Por exemplo, "student-dashboard.component.html" e a pagina que o aluno ve;
 "student-dashboard.component.ts" contem suas informacoes e a troca de abas;
 "student-dashboard.component.scss" cuida da decoracao do aluno. Os nomes
-"parent" e "driver" seguem a mesma ideia para responsavel e motorista.
+"parent" e "driver" seguem a mesma ideia para responsavel e Monitor.
 
 Uma moldura compartilhada evita copiar o mesmo menu tres vezes. Se o menu
 precisar mudar para todos, altere a pasta "dashboard". Se apenas uma tela
@@ -499,7 +528,7 @@ Agora cada perfil tem seu proprio arquivo de decoracao:
 
   Aluno:      src/app/aluno/student-dashboard.component.scss
   Responsavel: src/app/responsavel/parent-dashboard.component.scss
-  Motorista:   src/app/motorista/driver-dashboard.component.scss
+  Monitor:     src/app/motorista/driver-dashboard.component.scss
 
 A moldura igual nos tres paineis tem seus estilos em
 "src/app/dashboard/dashboard-layout.scss". O navegador combina a moldura comum
@@ -507,11 +536,11 @@ com os detalhes proprios de cada perfil.
 
 Para conferir sem escrever codigo:
 
-1. Abra o site e entre como Aluno usando rcs1 e 1234.
+1. Abra o site e entre como Aluno usando rcs3 e 1234.
 2. Repare que a faixa de saudacao e os detalhes dos cartoes puxam para azul.
-3. Saia da conta e entre como Responsavel com rcs2 e 1234. A cor principal
+3. Saia da conta e entre como Responsavel com rcs1 e 1234. A cor principal
    volta para verde.
-4. Saia outra vez e entre como Motorista com rcs3 e 1234. Os detalhes ganham
+4. Saia outra vez e entre como Monitor com rcs2 e 1234. Os detalhes ganham
    tons quentes, lembrando uma rota e um painel de operacao.
 5. Abra a opcao de viagem ou rota em cada perfil. Os botoes e o destaque de
    localizacao acompanham as cores daquele perfil.
@@ -525,7 +554,7 @@ alterar. No comeco do arquivo ha tres linhas parecidas com estas:
 No arquivo do aluno, a primeira linha guarda a cor principal e a segunda uma
 versao suave usada nos fundos. Cada perfil possui seus proprios valores, por
 isso uma mudanca no arquivo de aluno nao precisa alterar responsavel ou
-motorista. O sinal "#" e seguido por um codigo de cor.
+Monitor. O sinal "#" e seguido por um codigo de cor.
 
 Se quiser experimentar uma nova cor:
 
@@ -578,6 +607,13 @@ com contraste suficiente.
 
 REGISTRO DE APRENDIZADO
 -----------------------
+
+2026-11-17
+  Foi criado o perfil Admin com a conta rcs4 e senha 1234. Somente esse perfil
+  abre a Central operacional; a tela de login o encaminha diretamente para la.
+  O perfil Motorista foi renomeado para Monitor e usa a conta rcs2. As contas
+  Responsavel e Aluno usam rcs1 e rcs3. Os capitulos 2 e 3 mostram o fluxo
+  atualizado, incluindo os cadastros e as viagens da Central.
 
 2026-10-22
   Foi adicionado um controle de tema compartilhado entre entrada e paineis.

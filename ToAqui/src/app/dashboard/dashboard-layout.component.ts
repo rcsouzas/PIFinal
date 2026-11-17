@@ -28,7 +28,8 @@ export class DashboardLayoutComponent {
     return {
       aluno: 'Aluno',
       responsavel: 'Responsável',
-      motorista: 'Motorista',
+      monitor: 'Monitor',
+      admin: 'Admin',
     }[this.profile];
   }
 

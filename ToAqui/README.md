@@ -1,59 +1,53 @@
 # ToAqui
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.27.
+Aplicação demonstrativa para gestão de transporte escolar, construída em Angular com módulos (`NgModules`), componentes não standalone, roteamento e Angular Material.
 
-## Development server
+**Repositório:** [github.com/rcsouzas/PIFinal](https://github.com/rcsouzas/PIFinal)
 
-To start a local development server, run:
+## Executar localmente
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Requisitos: Node.js compatível com Angular 21 e npm.
 
 ```bash
-ng generate component component-name
+npm ci
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Acesse `http://localhost:4200`. O build de produção, sem SSR/SSG, pode ser gerado com `npm run build`; os arquivos estáticos são gravados em `dist/`.
 
-```bash
-ng generate --help
-```
+## Acesso de demonstração
 
-## Building
+Na tela inicial, selecione o perfil e entre com uma das contas abaixo. A senha é `1234` para todas:
 
-To build the project run:
+| Perfil      | Usuário |
+| ----------- | ------- |
+| Responsável | `rcs1`  |
+| Monitor     | `rcs2`  |
+| Aluno       | `rcs3`  |
+| Admin       | `rcs4`  |
 
-```bash
-ng build
-```
+Somente a conta Admin acessa a **Central operacional** e é direcionada para ela após o login. Os demais perfis abrem seus painéis:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+1. Entre como Admin com `rcs4` e `1234`.
+2. Consulte ou cadastre um responsável e um aluno vinculado a ele.
+3. Consulte ou cadastre motorista e veículo.
+4. Crie uma viagem, associe motorista, veículo e alunos, e inicie a viagem.
+5. Registre embarque e desembarque na lista da viagem.
+6. Volte ao Dashboard da Central e confira os KPIs de viagens ativas, alunos a bordo e assentos disponíveis.
 
-## Running unit tests
+Os registros são persistidos no `localStorage` do navegador. Para recomeçar a avaliação, limpe os dados do site no navegador e recarregue a aplicação.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Modelo de domínio
 
-```bash
-ng test
-```
+O diagrama de classes e os relacionamentos estão em [documentacao/diagrama-de-classes.md](./documentacao/diagrama-de-classes.md).
 
-## Running end-to-end tests
+## Publicação
 
-For end-to-end (e2e) testing, run:
+O projeto não está publicado em nuvem por este repositório. Para gerar a versão estática, execute `npm run build` e publique o conteúdo de `dist/ToAqui/browser` em um host estático com fallback de navegação para `index.html` (necessário para as rotas Angular). Após publicar, teste o fluxo acima na URL pública. A central operacional exige que o avaliador entre com uma das contas de demonstração.
 
-```bash
-ng e2e
-```
+## Escopo e limitações da demonstração
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Os KPIs e cadastros da central são calculados a partir de dados locais e persistem apenas no navegador/dispositivo usado.
+- A autenticação existente serve para demonstração; não é um sistema de identidade de produção. A proteção por perfil da Central é feita no cliente e não substitui autorização de servidor.
+- Localização em tempo real, integração com GPS, notificações, leitura real de QR Code, API/servidor, sincronização entre usuários, backups e implantação em nuvem ainda não estão implementados.
+- Use somente dados fictícios nesta versão. Consulte [REQUISITOS.md](./REQUISITOS.md) para os demais requisitos e limites do protótipo.

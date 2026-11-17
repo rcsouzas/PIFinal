@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Profile } from '../auth/profile';
+import { SignupProfile } from '../auth/profile';
 import { AuthService } from '../auth/auth.service';
 import { ThemeService } from '../theme/theme.service';
 
@@ -13,7 +13,7 @@ import { ThemeService } from '../theme/theme.service';
 export class SignupComponent {
   name = '';
   email = '';
-  profile: Profile = 'responsavel';
+  profile: SignupProfile = 'responsavel';
   password = '';
   confirmPassword = '';
   message = '';

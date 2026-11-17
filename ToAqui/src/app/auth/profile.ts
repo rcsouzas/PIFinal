@@ -1,4 +1,5 @@
-export type Profile = 'aluno' | 'responsavel' | 'motorista';
+export type Profile = 'aluno' | 'responsavel' | 'monitor' | 'admin';
+export type SignupProfile = Exclude<Profile, 'admin'>;
 
 export type DashboardTab = 'inicio' | 'rota' | 'avisos';
 

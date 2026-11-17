@@ -9,6 +9,12 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './cadastro/signup.component';
 import { DriverDashboardComponent } from './motorista/driver-dashboard.component';
 import { ParentDashboardComponent } from './responsavel/parent-dashboard.component';
+import { OperationsComponent } from './operacao/operations.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -19,8 +25,18 @@ import { ParentDashboardComponent } from './responsavel/parent-dashboard.compone
     StudentDashboardComponent,
     ParentDashboardComponent,
     DriverDashboardComponent,
+    OperationsComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+  ],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
 })

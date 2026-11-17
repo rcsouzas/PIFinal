@@ -29,12 +29,12 @@ describe('DriverDashboardComponent', () => {
 
   it('renders the assigned account in the shared dashboard header', () => {
     const auth = TestBed.inject(AuthService);
-    const driver = DEMO_ACCOUNTS.find((account) => account.profile === 'motorista');
-    if (!driver) throw new Error('A conta de demonstração do motorista não foi configurada.');
-    auth.login(driver.profile, driver.username, driver.password);
+    const monitor = DEMO_ACCOUNTS.find((account) => account.profile === 'monitor');
+    if (!monitor) throw new Error('A conta de demonstração do monitor não foi configurada.');
+    auth.login(monitor.profile, monitor.username, monitor.password);
     const fixture = TestBed.createComponent(DriverDashboardComponent);
     fixture.detectChanges();
 
-    expect((fixture.nativeElement as HTMLElement).textContent).toContain(driver.username);
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain(monitor.username);
   });
 });

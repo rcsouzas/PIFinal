@@ -86,20 +86,31 @@ e, quando aplicável, criptografia apropriada.
 - Implementação de tokens de autenticação.
 - Recursos de acessibilidade, incluindo suporte a pessoas cegas.
 
-## Estado deste protótipo
+## Estado desta versão de demonstração
 
-O painel do aluno oferece controles demonstrativos de aviso de ausência,
-lembrete de proximidade e QR Code de embarque. O QR contém apenas um identificador
-de demonstração e não confirma presença. As alterações de ausência e os
-lembretes ficam somente no estado local da tela.
+O projeto usa Angular com módulos (`NgModules`), componentes `standalone: false`,
+roteamento e Angular Material. O build é client-side, sem SSR/SSG.
 
-A tela de cadastro cria contas apenas em memória para demonstrar o fluxo de
-acesso ao painel. Essas contas deixam de existir ao recarregar a aplicação e
-não representam autenticação ou armazenamento seguro de credenciais.
+A Central operacional oferece CRUD de responsáveis, alunos, motoristas,
+veículos e viagens. As entidades têm relacionamentos, as viagens validam a
+capacidade do veículo e uma viagem pode avançar de planejada a em andamento e
+concluída. O usuário registra embarque e desembarque, e o dashboard apresenta
+indicadores calculados a partir desses registros. Os dados ficam no
+`localStorage` do navegador.
 
-O projeto ainda não conecta esses controles a uma API, a uma rota real, a
-notificações do sistema, a uma câmera/leitor de QR ou a um serviço de localização.
-Também não implementa autenticação de embarque, biometria, sincronização entre
-perfis, persistência, backups ou infraestrutura para as metas de escala e
-compatibilidade móvel. As telas e os horários existentes devem ser tratados
-como dados ilustrativos até essas integrações e seus testes serem implementados.
+O login oferece os perfis aluno, responsável, monitor e Admin. Somente a conta
+de demonstração Admin (`rcs4`, senha `1234`) abre a Central operacional; o
+perfil Motorista foi renomeado para Monitor. A validação de perfil no cliente
+serve apenas para esta demonstração e não substitui autorização no servidor.
+
+Os painéis de aluno e responsável e alguns dados da tela do Monitor ainda são
+ilustrativos. O QR Code contém apenas um identificador demonstrativo e não
+confirma presença. O sistema não integra API, GPS, notificações, câmera/leitor
+de QR, autenticação de embarque, biometria ou sincronização entre dispositivos.
+O login e o cadastro de contas também são demonstrativos e não representam
+autenticação segura ou autorização por perfil de produção. Não estão
+implementados backups nem infraestrutura para as metas de escala e
+compatibilidade móvel. Use somente dados fictícios nesta versão.
+
+O diagrama de classes da Central está em
+[documentacao/diagrama-de-classes.md](documentacao/diagrama-de-classes.md).

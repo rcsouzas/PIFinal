@@ -1,7 +1,7 @@
 Visão geral do projeto ToAqui
 ===========================
 
-O ToAqui é uma aplicação de demonstração para acompanhar transporte escolar. Ele simula três perfis de acesso: aluno, responsável e motorista, e fornece visualizações que ajudam a entender o trajeto, a paragem e o status da mobilidade.
+O ToAqui é uma aplicação de demonstração para acompanhar transporte escolar. Ele simula quatro perfis de acesso: aluno, responsável, monitor e Admin. O perfil Admin acessa a Central operacional; os demais perfis abrem visualizações do trajeto, da paragem e do status da mobilidade.
 
 Objetivo da interface
 ---------------------
@@ -13,7 +13,8 @@ O que existe no projeto
 - seleção de perfil
 - painel de dashboard do aluno
 - painel de dashboard do responsável
-- painel de dashboard do motorista
+- painel de rota do monitor
+- Central operacional exclusiva do Admin
 - controle de tema claro/escuro
 - marca visual com identidade própria
 
@@ -35,7 +36,7 @@ Os elementos principais são:
 - .login-page: container da grade geral
 - .welcome-panel: área da esquerda chamada para apresentação
 - .form-panel: área da direita com os campos
-- .profile-option: opções de perfil (responsável, motorista, aluno)
+- .profile-option: opções de perfil (responsável, monitor, aluno e Admin)
 - .submit-button: botão principal de acesso
 
 Exemplo:
